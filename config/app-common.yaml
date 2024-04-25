@@ -1,0 +1,26 @@
+---
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  RpHaven\App\:
+    resource: '../src/'
+    
+  RpHaven\App\Bus\SymfonyCommandBus: ~
+  RpHaven\App\Bus\SymfonyQueryBus: ~
+
+  RpHaven\App\Logger\Psr3Logger: ~
+  RpHaven\App\Log: '@RpHaven\App\Logger\Psr3Logger'
+
+  RpHaven\App\Command\CommandBus: '@RpHaven\App\Bus\SymfonyCommandBus'
+  RpHaven\App\Command\QueryBus: '@RpHaven\App\Bus\SymfonyQueryBus'
+
+  _instanceof:
+    RpHaven\App\Query\QueryHandler:
+      tags:
+        - { name: messenger.message_handler, bus: 'query.bus' }
+    RpHaven\App\Command\CommandHandler:
+      tags:
+        - { name: messenger.message_handler, bus: 'command.bus' }

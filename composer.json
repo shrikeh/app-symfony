@@ -1,0 +1,57 @@
+{
+    "name": "rphaven/app-symfony",
+    "description": "Symfony implementations of common App components",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barney Hanlon",
+            "email": "barney@shrikeh.net"
+        }
+    ],
+    "require": {
+        "php": ">=8.3",
+        "psr/log": "*",
+        "symfony/messenger": "^7.0",
+        "symfony/http-kernel": "^7.0",
+        "rphaven/common-app": "dev-main"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
+        "ergebnis/composer-normalize": "*",
+        "infection/infection": "*",
+        "phpspec/prophecy-phpunit": "*",
+        "phpstan/phpstan": "*",
+        "phpunit/php-code-coverage": "*",
+        "phpunit/phpcov": "*",
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "*",
+        "symfony/dotenv": "*",
+        "vimeo/psalm": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "RpHaven\\App\\": "src"
+        }
+    },
+    "repositories": [
+{
+    "type": "vcs",
+    "url": "https://github.com/rphaven/common-app"
+}
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "composer-normalize": {
+            "indent-size": 2,
+            "indent-style": "space"
+        }
+    }
+}
