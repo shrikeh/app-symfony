@@ -6,11 +6,13 @@ namespace RpHaven\App\Uid\Id\Uuid;
 
 use Nyholm\Psr7\Uri;
 use RpHaven\App\Uid\Id\Uuid\Oid\Store;
+use RpHaven\App\Uid\Id\Uuid\Oid\Traits\NamespaceTrait;
 use Symfony\Component\Uid\Uuid;
 
 enum Oid: string
 {
-    public const BASE_URI = 'https://RpHaven.co.uk/%s';
+    use NamespaceTrait;
+    public const string BASE_URI = 'https://rpHaven.co.uk/%s';
 
     case BRANCH = 'branch';
     case GAME = 'game';
@@ -27,25 +29,15 @@ enum Oid: string
 
     case WALLET = 'wallet';
 
-    public function namespace(): Uuid
-    {
-        if (!$namespace = Store::get($this)) {
-            $oid = $this->oid();
-            $uriNamespace = Uuid::fromString(Uuid::NAMESPACE_URL);
-            $namespace = Uuid::v5($uriNamespace, (string) $oid);
-            Store::storeNamespace($this, $namespace);
-        }
 
-        return $namespace;
-    }
 
     public function node(): string
     {
         return substr($this->namespace()->toRfc4122(), 24);
     }
 
-    private function oid(): Uri
+    private function baseUri(): string
     {
-        return new Uri(sprintf(self::BASE_URI, $this->value));
+        return self::BASE_URI;
     }
 }
