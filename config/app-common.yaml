@@ -18,6 +18,9 @@ services:
   RpHaven\App\Command\QueryBus: '@RpHaven\App\Bus\SymfonyQueryBus'
 
   _instanceof:
+    RpHaven\Uid\UidFactory:
+      tags:
+        - { name: uid.factory }
     RpHaven\App\Query\QueryHandler:
       tags:
         - { name: messenger.message_handler, bus: 'query.bus' }
