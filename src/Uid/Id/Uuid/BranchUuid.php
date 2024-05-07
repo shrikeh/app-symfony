@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Id;
+namespace RpHaven\App\Uid\Id\Uuid;
 
 use Psr\Http\Message\UriInterface;
-use RpHaven\App\Uid\Traits\BinaryUid;
-use RpHaven\App\Uid\Traits\Rfc4122Uid;
-use RpHaven\App\Uid\Uuid\Oid;
-use RpHaven\App\Uid\Uuid\Traits\UuidV5Type;
+use RpHaven\App\Uid\Id\Traits\BinaryUid;
+use RpHaven\App\Uid\Id\Traits\Rfc4122Uid;
+use RpHaven\App\Uid\Id\Uuid\Traits\UuidV5Type;
 use RpHaven\Uid\Id\BranchId;
 use RpHaven\Uid\Traits\ToString;
 use Symfony\Component\Uid\UuidV5;

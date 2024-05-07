@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RpHaven\App\Uid\Factory;
 
 use DateTimeImmutable;
-use RpHaven\App\Uid\Uuid\Id\MeetUuid;
+use RpHaven\App\Uid\Id\Uuid\MeetUuid;
 use RpHaven\Uid\Id\BranchId;
 use RpHaven\Uid\Id\MeetId;
 use RpHaven\Uid\UidFactory;

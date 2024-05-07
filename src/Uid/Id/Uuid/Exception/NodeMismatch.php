@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Id\Exception;
+namespace RpHaven\App\Uid\Id\Uuid\Exception;
 
 use InvalidArgumentException;
-use RpHaven\App\Uid\Uuid\Id\Exception\IdException;
 use Symfony\Component\Uid\UuidV6;
 
 final class NodeMismatch extends InvalidArgumentException implements IdException

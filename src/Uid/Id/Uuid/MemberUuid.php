@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Id;
+namespace RpHaven\App\Uid\Id\Uuid;
 
 use DateTimeInterface;
-use RpHaven\App\Uid\Traits\BinaryUid;
-use RpHaven\App\Uid\Traits\Rfc4122Uid;
-use RpHaven\App\Uid\Uuid\Id\Exception\NodeMismatch;
-use RpHaven\App\Uid\Uuid\Oid;
-use RpHaven\App\Uid\Uuid\Traits\UuidV6Type;
+use RpHaven\App\Uid\Id\Traits\BinaryUid;
+use RpHaven\App\Uid\Id\Traits\Rfc4122Uid;
+use RpHaven\App\Uid\Id\Uuid\Exception\NodeMismatch;
+use RpHaven\App\Uid\Id\Uuid\Traits\UuidV6Type;
 use RpHaven\Uid\Id\MemberId;
 use RpHaven\Uid\Traits\ToString;
 use Symfony\Component\Uid\UuidV6;

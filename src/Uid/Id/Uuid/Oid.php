@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid;
+namespace RpHaven\App\Uid\Id\Uuid;
 
 use Nyholm\Psr7\Uri;
-use RpHaven\App\Uid\Uuid\Oid\Store;
+use RpHaven\App\Uid\Id\Uuid\Oid\Store;
 use Symfony\Component\Uid\Uuid;
 
 enum Oid: string

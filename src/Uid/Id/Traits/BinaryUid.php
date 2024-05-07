@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Traits;
+namespace RpHaven\App\Uid\Id\Traits;
 
 use Symfony\Component\Uid\AbstractUid;
 use Symfony\Component\Uid\Uuid;

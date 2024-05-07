@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Type;
+namespace RpHaven\App\Uid\Id\Uuid\Type;
 
 use RpHaven\Uid\Uid\Type;
 

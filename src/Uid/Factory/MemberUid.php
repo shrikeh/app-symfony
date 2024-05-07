@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RpHaven\App\Uid\Factory;
 
 use DateTimeInterface;
-use RpHaven\App\Uid\Uuid\Id\MemberUuid;
+use RpHaven\App\Uid\Id\Uuid\MemberUuid;
 use RpHaven\Uid\Id\MemberId;
 use RpHaven\Uid\UidFactory;
 

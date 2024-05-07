@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Id;
+namespace RpHaven\App\Uid\Id\Uuid;
 
 
 use Psr\Http\Message\UriInterface;
-use RpHaven\App\Uid\Traits\BinaryUid;
-use RpHaven\App\Uid\Traits\Rfc4122Uid;
-use RpHaven\App\Uid\Uuid\Oid;
-use RpHaven\App\Uid\Uuid\Traits\UuidV6Type;
+use RpHaven\App\Uid\Id\Traits\BinaryUid;
+use RpHaven\App\Uid\Id\Traits\Rfc4122Uid;
+use RpHaven\App\Uid\Id\Uuid\Traits\UuidV6Type;
+use RpHaven\App\Uid\Uuid\Id\UuidV5;
 use RpHaven\Uid\Id\SpaceId;
 use RpHaven\Uid\Traits\ToString;
 

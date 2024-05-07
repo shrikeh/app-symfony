@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Traits;
+namespace RpHaven\App\Uid\Id\Uuid\Traits;
 
-use RpHaven\App\Uid\Uuid\Type\Uuid;
+use RpHaven\App\Uid\Id\Uuid\Type\Uuid;
 
 trait UuidV6Type
 {

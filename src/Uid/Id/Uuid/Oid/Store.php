@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Oid;
+namespace RpHaven\App\Uid\Id\Uuid\Oid;
 
 use Ds\Map;
-use RpHaven\App\Uid\Uuid\Oid;
+use RpHaven\App\Uid\Id\Uuid\Oid;
 use Symfony\Component\Uid\UuidV5;
 
 final class Store

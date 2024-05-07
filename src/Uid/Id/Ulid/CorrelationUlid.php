@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Ulid\Id;
+namespace RpHaven\App\Uid\Id\Ulid;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use RpHaven\App\Uid\Traits\BinaryUid;
-use RpHaven\App\Uid\Traits\Rfc4122Uid;
-use RpHaven\App\Uid\Ulid\Traits\UlidType;
+use RpHaven\App\Uid\Id\Traits\BinaryUid;
+use RpHaven\App\Uid\Id\Traits\Rfc4122Uid;
+use RpHaven\App\Uid\Id\Ulid\Traits\UlidType;
 use RpHaven\Uid\Id\CorrelationId;
 use RpHaven\Uid\Traits\ToString;
 use Symfony\Component\Uid\Ulid;
