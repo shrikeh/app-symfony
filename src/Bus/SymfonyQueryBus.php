@@ -14,9 +14,6 @@ use Throwable;
 
 final readonly class SymfonyQueryBus implements QueryBus
 {
-    use HandleTrait {
-        handle as handleQuery;
-    }
     public function __construct(private CorrelatingMessageBus $queryBus)
     {
     }
