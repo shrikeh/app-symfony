@@ -6,11 +6,10 @@ namespace RpHaven\App\Bus;
 
 use RpHaven\App\Bus\Exception\ErrorHandlingQuery;
 use RpHaven\App\Message\Query;
+use RpHaven\App\Message\Result;
 use RpHaven\App\Query\QueryBus;
 use RpHaven\App\Query\QueryBus\Exception\QueryBusException;
-use RpHaven\App\Message\Result;
 use Symfony\Component\Messenger\HandleTrait;
-use Symfony\Component\Messenger\MessageBusInterface;
 use Throwable;
 
 final readonly class SymfonyQueryBus implements QueryBus

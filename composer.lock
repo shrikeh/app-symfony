@@ -518,12 +518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RPHaven/uid.git",
-                "reference": "f2b1b34c3f18892bc9ef27bfae7a59265e919b44"
+                "reference": "7b475845d371fd4edf9aa1d3c8fb7be8b7652008"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RPHaven/uid/zipball/f2b1b34c3f18892bc9ef27bfae7a59265e919b44",
-                "reference": "f2b1b34c3f18892bc9ef27bfae7a59265e919b44",
+                "url": "https://api.github.com/repos/RPHaven/uid/zipball/7b475845d371fd4edf9aa1d3c8fb7be8b7652008",
+                "reference": "7b475845d371fd4edf9aa1d3c8fb7be8b7652008",
                 "shasum": ""
             },
             "require": {
@@ -550,7 +550,7 @@
                 "source": "https://github.com/RPHaven/uid/tree/main",
                 "issues": "https://github.com/RPHaven/uid/issues"
             },
-            "time": "2024-05-07T10:13:28+00:00"
+            "time": "2024-05-07T11:10:14+00:00"
         },
         {
             "name": "symfony/clock",
