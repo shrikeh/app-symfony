@@ -5,27 +5,24 @@ declare(strict_types=1);
 namespace RpHaven\App\Bus;
 
 use RpHaven\App\Bus\Exception\ErrorHandlingCommand;
-use RpHaven\App\Command;
 use RpHaven\App\Command\CommandBus;
-use RpHaven\App\Result;
+use RpHaven\App\Message\Command;
+use RpHaven\App\Message\Result;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Throwable;
 
-final class SymfonyCommandBus implements CommandBus
+final readonly class SymfonyCommandBus implements CommandBus
 {
-    use HandleTrait {
-        handle as private handleCommand;
-    }
-    public function __construct(MessageBusInterface $commandBus)
+
+    public function __construct(private CorrelatingMessageBus $commandBus)
     {
-        $this->messageBus = $commandBus;
     }
 
     public function handle(Command $command): ?Result
     {
         try {
-            return $this->handleCommand($command);
+            return $this->commandBus->message($command);
         } catch (Throwable $exc) {
             throw new ErrorHandlingCommand($command, $exc);
         }

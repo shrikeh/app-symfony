@@ -9,6 +9,7 @@ use RpHaven\App\Log;
 use RpHaven\App\Log\Context;
 use RpHaven\App\Log\Level;
 use RpHaven\App\Log\Level\Psr3;
+use Stringable;
 
 final readonly class Psr3AppLogger implements Log
 {
@@ -21,47 +22,47 @@ final readonly class Psr3AppLogger implements Log
 
     }
 
-    public function emergency(\Stringable|string $message, Context ...$contexts): void
+    public function emergency(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::EMERGENCY, $message, ...$contexts);
     }
 
-    public function alert(\Stringable|string $message, Context ...$contexts): void
+    public function alert(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::ALERT, $message, ...$contexts);
     }
 
-    public function critical(\Stringable|string $message, Context ...$contexts): void
+    public function critical(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::CRITICAL, $message, ...$contexts);
     }
 
-    public function error(\Stringable|string $message, Context ...$contexts): void
+    public function error(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::ERROR, $message, ...$contexts);
     }
 
-    public function warning(\Stringable|string $message, Context ...$contexts): void
+    public function warning(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::WARNING, $message, ...$contexts);
     }
 
-    public function notice(\Stringable|string $message, Context ...$contexts): void
+    public function notice(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::NOTICE, $message, ...$contexts);
     }
 
-    public function info(\Stringable|string $message, Context ...$contexts): void
+    public function info(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::INFO, $message, ...$contexts);
     }
 
-    public function debug(\Stringable|string $message, Context ...$contexts): void
+    public function debug(Stringable|string $message, Context ...$contexts): void
     {
         $this->log(Psr3::DEBUG, $message, ...$contexts);
     }
 
-    public function log(Level $level, \Stringable|string $message, Context ...$contexts): void
+    public function log(Level $level, Stringable|string $message, Context ...$contexts): void
     {
         $this->logger->log($this->levelize($level), $message, $this->contextualize(...$contexts));
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RpHaven\App\Bus\Exception;
 
-use RpHaven\App\Query;
+use RpHaven\App\Message\Query;
 use RpHaven\App\Query\QueryBus\Exception\QueryBusException;
 use RuntimeException;
 use Throwable;

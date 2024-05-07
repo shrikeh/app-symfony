@@ -454,12 +454,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RPHaven/common-app.git",
-                "reference": "9d0f64db204c939f47d41af25fd26384718bd88b"
+                "reference": "ffd766bcdf9e3883cd182acd52d9335629a114c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RPHaven/common-app/zipball/9d0f64db204c939f47d41af25fd26384718bd88b",
-                "reference": "9d0f64db204c939f47d41af25fd26384718bd88b",
+                "url": "https://api.github.com/repos/RPHaven/common-app/zipball/ffd766bcdf9e3883cd182acd52d9335629a114c0",
+                "reference": "ffd766bcdf9e3883cd182acd52d9335629a114c0",
                 "shasum": ""
             },
             "require": {
@@ -510,7 +510,7 @@
                 "source": "https://github.com/RPHaven/common-app/tree/main",
                 "issues": "https://github.com/RPHaven/common-app/issues"
             },
-            "time": "2024-05-03T13:19:54+00:00"
+            "time": "2024-05-07T10:43:30+00:00"
         },
         {
             "name": "rphaven/uid",
@@ -518,18 +518,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RPHaven/uid.git",
-                "reference": "ca82e6e18536a7b48fcce137206161db4c7d598c"
+                "reference": "f2b1b34c3f18892bc9ef27bfae7a59265e919b44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RPHaven/uid/zipball/ca82e6e18536a7b48fcce137206161db4c7d598c",
-                "reference": "ca82e6e18536a7b48fcce137206161db4c7d598c",
+                "url": "https://api.github.com/repos/RPHaven/uid/zipball/f2b1b34c3f18892bc9ef27bfae7a59265e919b44",
+                "reference": "f2b1b34c3f18892bc9ef27bfae7a59265e919b44",
                 "shasum": ""
             },
             "require": {
-                "nyholm/psr7": "^1.8",
-                "php-ds/php-ds": "^1.5",
-                "symfony/uid": "^7.0"
+                "rphaven/common-app": "dev-main"
             },
             "default-branch": true,
             "type": "library",
@@ -552,7 +550,7 @@
                 "source": "https://github.com/RPHaven/uid/tree/main",
                 "issues": "https://github.com/RPHaven/uid/issues"
             },
-            "time": "2024-05-07T09:33:30+00:00"
+            "time": "2024-05-07T10:13:28+00:00"
         },
         {
             "name": "symfony/clock",

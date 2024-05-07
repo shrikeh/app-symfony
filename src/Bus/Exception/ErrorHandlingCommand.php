@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RpHaven\App\Bus\Exception;
 
-use RpHaven\App\Command;
+use RpHaven\App\Message\Command;
 use RpHaven\App\Command\CommandBus\Exception\CommandBusException;
 use RuntimeException;
 use Throwable;
