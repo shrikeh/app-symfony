@@ -21,10 +21,10 @@ final class CorrelatingMessageBus
 
     private ?Correlation $correlation;
     public function __construct(
-        private readonly MessageBusInterface $messageBus,
+        MessageBusInterface $messageBus,
         private readonly Log $log,
     ) {
-
+        $this->messageBus = $messageBus;
     }
 
     public function message(Message $message): ?Result
