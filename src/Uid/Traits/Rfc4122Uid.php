@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Uid\Uuid\Traits;
+namespace RpHaven\App\Uid\Traits;
 
 use RpHaven\Games\Interface\Uid;
 use Symfony\Component\Uid\AbstractUid;

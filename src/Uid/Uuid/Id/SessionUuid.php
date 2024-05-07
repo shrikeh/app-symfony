@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace RpHaven\App\Uid\Uuid\Id;
 
 use DateTimeImmutable;
-use RpHaven\App\Uid\Uuid\Traits\BinaryUid;
-use RpHaven\App\Uid\Uuid\Traits\Rfc4122Uid;
+use RpHaven\App\Uid\Traits\BinaryUid;
+use RpHaven\App\Uid\Traits\Rfc4122Uid;
 use RpHaven\App\Uid\Uuid\Traits\UuidV6Type;
 use RpHaven\Uid\Id\GameId;
 use RpHaven\Uid\Id\MeetId;

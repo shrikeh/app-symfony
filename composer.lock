@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4054faf8d0ed660c6580aed0cb934649",
+    "content-hash": "eeb211b2989bf9b1955dd2078535660e",
     "packages": [
         {
             "name": "nyholm/psr7",
@@ -514,16 +514,16 @@
         },
         {
             "name": "rphaven/uid",
-            "version": "0.2.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RPHaven/uid.git",
-                "reference": "1d8299d7c4f3a7a7324d4e48cc4eff5fefc4738d"
+                "reference": "ca82e6e18536a7b48fcce137206161db4c7d598c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RPHaven/uid/zipball/1d8299d7c4f3a7a7324d4e48cc4eff5fefc4738d",
-                "reference": "1d8299d7c4f3a7a7324d4e48cc4eff5fefc4738d",
+                "url": "https://api.github.com/repos/RPHaven/uid/zipball/ca82e6e18536a7b48fcce137206161db4c7d598c",
+                "reference": "ca82e6e18536a7b48fcce137206161db4c7d598c",
                 "shasum": ""
             },
             "require": {
@@ -531,6 +531,7 @@
                 "php-ds/php-ds": "^1.5",
                 "symfony/uid": "^7.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -548,10 +549,10 @@
             ],
             "description": "Library of common functionality surrounding UIDs (in the form of UUIDs and ULIDs)",
             "support": {
-                "source": "https://github.com/RPHaven/uid/tree/0.2.0",
+                "source": "https://github.com/RPHaven/uid/tree/main",
                 "issues": "https://github.com/RPHaven/uid/issues"
             },
-            "time": "2024-04-23T11:54:34+00:00"
+            "time": "2024-05-07T09:33:30+00:00"
         },
         {
             "name": "symfony/clock",
@@ -7181,7 +7182,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "rphaven/common-app": 20
+        "rphaven/common-app": 20,
+        "rphaven/uid": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

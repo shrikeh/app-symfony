@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace RpHaven\App\Uid\Factory;
 
 use Psr\Http\Message\UriInterface;
+use RpHaven\App\Uid\Uuid\Id\BranchUuid;
 use RpHaven\Uid\Id\BranchId;
 use RpHaven\Uid\UidFactory;
-use RpHaven\Uid\Uuid\Id\BranchUuid;
 
 final readonly class BranchUid implements UidFactory
 {

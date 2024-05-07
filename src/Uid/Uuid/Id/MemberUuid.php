@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace RpHaven\App\Uid\Uuid\Id;
 
 use DateTimeInterface;
+use RpHaven\App\Uid\Traits\BinaryUid;
+use RpHaven\App\Uid\Traits\Rfc4122Uid;
 use RpHaven\App\Uid\Uuid\Id\Exception\NodeMismatch;
 use RpHaven\App\Uid\Uuid\Oid;
-use RpHaven\App\Uid\Uuid\Traits\BinaryUid;
-use RpHaven\App\Uid\Uuid\Traits\Rfc4122Uid;
 use RpHaven\App\Uid\Uuid\Traits\UuidV6Type;
 use RpHaven\Uid\Id\MemberId;
 use RpHaven\Uid\Traits\ToString;

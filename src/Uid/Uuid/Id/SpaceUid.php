@@ -6,9 +6,9 @@ namespace RpHaven\App\Uid\Uuid\Id;
 
 
 use Psr\Http\Message\UriInterface;
+use RpHaven\App\Uid\Traits\BinaryUid;
+use RpHaven\App\Uid\Traits\Rfc4122Uid;
 use RpHaven\App\Uid\Uuid\Oid;
-use RpHaven\App\Uid\Uuid\Traits\BinaryUid;
-use RpHaven\App\Uid\Uuid\Traits\Rfc4122Uid;
 use RpHaven\App\Uid\Uuid\Traits\UuidV6Type;
 use RpHaven\Uid\Id\SpaceId;
 use RpHaven\Uid\Traits\ToString;

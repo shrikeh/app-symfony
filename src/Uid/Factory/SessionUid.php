@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace RpHaven\App\Uid\Factory;
 
 use DateTimeImmutable;
+use RpHaven\App\Uid\Uuid\Id\SessionUuid;
 use RpHaven\Uid\Id\GameId;
 use RpHaven\Uid\Id\MeetId;
 use RpHaven\Uid\Id\SessionId;
-use RpHaven\Uid\Uuid\Id\SessionUuid;
+
 
 final class SessionUid
 {
