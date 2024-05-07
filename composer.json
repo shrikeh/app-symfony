@@ -14,7 +14,10 @@
         "psr/log": "*",
         "symfony/messenger": "^7.0",
         "symfony/http-kernel": "^7.0",
-        "rphaven/common-app": "dev-main"
+        "rphaven/common-app": "dev-main",
+        "symfony/dependency-injection": "^7.0",
+        "symfony/config": "^7.0",
+        "rphaven/uid": "^0.2.0"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "*",
@@ -38,7 +41,11 @@
 {
     "type": "vcs",
     "url": "https://github.com/rphaven/common-app"
-}
+},
+        {
+            "type": "vcs",
+            "url": "https://github.com/rphaven/uid"
+        }
     ],
     "config": {
         "allow-plugins": {
