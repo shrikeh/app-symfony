@@ -17,6 +17,6 @@ enum Ulid: string implements Type
 
     #[\Override] public function version(): ?string
     {
-        return;
+        return 'default';
     }
 }
