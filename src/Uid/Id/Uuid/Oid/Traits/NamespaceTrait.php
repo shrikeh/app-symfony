@@ -24,8 +24,8 @@ trait NamespaceTrait
 
     private function oid(): Uri
     {
-        return new Uri(sprintf($this->baseUri(), $this->value));
+        return new Uri(sprintf(static::baseUri(), $this->value));
     }
 
-    abstract private function baseUri(): string;
+    abstract public static function baseUri(): string;
 }

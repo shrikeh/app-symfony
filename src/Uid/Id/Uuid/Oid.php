@@ -36,7 +36,7 @@ enum Oid: string
         return substr($this->namespace()->toRfc4122(), 24);
     }
 
-    private function baseUri(): string
+    public static function baseUri(): string
     {
         return self::BASE_URI;
     }
