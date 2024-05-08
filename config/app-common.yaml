@@ -13,8 +13,8 @@ services:
   RpHaven\App\Bus\SymfonyCommandBus: ~
   RpHaven\App\Bus\SymfonyQueryBus: ~
 
-  RpHaven\App\Logger\Psr3Logger: ~
-  RpHaven\App\Log: '@RpHaven\App\Logger\Psr3Logger'
+  RpHaven\App\Logger\Psr3AppLogger: ~
+  RpHaven\App\Log: '@RpHaven\App\Logger\Psr3AppLogger'
 
   RpHaven\App\Command\CommandBus: '@RpHaven\App\Bus\SymfonyCommandBus'
   RpHaven\App\Command\QueryBus: '@RpHaven\App\Bus\SymfonyQueryBus'
