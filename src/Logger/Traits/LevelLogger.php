@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Logger\Traits;
+namespace Shrikeh\App\Logger\Traits;
 
-use RpHaven\App\Log\Level;
+use Shrikeh\App\Log\Level;
 
 trait LevelLogger
 {

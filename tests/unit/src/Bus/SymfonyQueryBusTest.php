@@ -6,48 +6,66 @@ namespace Tests\Unit\Bus;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use RpHaven\App\Bus\Exception\ErrorHandlingQuery;
-use RpHaven\App\Bus\SymfonyQueryBus;
-use RpHaven\App\Query;
-use RpHaven\App\Result;
-use Symfony\Component\Messenger\Envelope;
+use Shrikeh\App\Bus\Exception\ErrorHandlingCommand;
+use Shrikeh\App\Bus\Exception\ErrorHandlingQuery;
+use Shrikeh\App\Bus\Exception\QueryMustReturnAResult;
+use Shrikeh\App\Bus\MessageBus;
+use Shrikeh\App\Bus\SymfonyQueryBus;
+use Shrikeh\App\Message\Query;
+use Shrikeh\App\Message\Result;
 use Symfony\Component\Messenger\Exception\LogicException;
-use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 final class SymfonyQueryBusTest extends TestCase
 {
-
     use ProphecyTrait;
+
     public function testItReturnsAResult(): void
     {
         $query = $this->prophesize(Query::class)->reveal();
         $result = $this->prophesize(Result::class)->reveal();
-        $stamp = new HandledStamp($result, 'test');
 
-        $envelope = new Envelope($query, [$stamp]);
-
-        $messageBus = $this->prophesize(MessageBusInterface::class);
-        $messageBus->dispatch($query)->willReturn($envelope);
+        $messageBus = $this->prophesize(MessageBus::class);
+        $messageBus->message($query)->willReturn($result);
 
         $queryBus = new SymfonyQueryBus($messageBus->reveal());
 
         $this->assertSame(
             $result,
-            $queryBus->handle($query)
+            $queryBus->handle($query),
         );
     }
 
     public function testItThrowsAnExceptionIfTheMessageBusThrowsAnException(): void
     {
         $query = $this->prophesize(Query::class)->reveal();
-        $messageBus = $this->prophesize(MessageBusInterface::class);
+        $messageBus = $this->prophesize(MessageBus::class);
 
         $exception = new LogicException('foo');
-        $messageBus->dispatch($query)->willThrow($exception);
+        $messageBus->message($query)->willThrow($exception);
         $this->expectExceptionObject(new ErrorHandlingQuery($query, $exception));
+        $this->expectExceptionMessage(sprintf(
+            ErrorHandlingQuery::MSG_FORMAT,
+            get_class($query),
+            $exception->getMessage(),
+        ));
+        $queryBus = new SymfonyQueryBus($messageBus->reveal());
+
+        $queryBus->handle($query);
+    }
+
+    public function testItThrowsAnExceptionIfThereIsNoResult(): void
+    {
+        $query = $this->prophesize(Query::class)->reveal();
+        $messageBus = $this->prophesize(MessageBus::class);
+        $messageBus->message($query)->willReturn(null);
 
         $queryBus = new SymfonyQueryBus($messageBus->reveal());
+
+        $this->expectException(QueryMustReturnAResult::class);
+        $this->expectExceptionMessage(sprintf(
+            QueryMustReturnAResult::MSG,
+            get_class($query)
+        ));
 
         $queryBus->handle($query);
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Bus\Exception;
+namespace Shrikeh\App\Bus\Exception;
 
 use Throwable;
 

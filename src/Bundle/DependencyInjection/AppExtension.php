@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Bundle\DependencyInjection;
+namespace Shrikeh\App\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -11,6 +11,9 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 final class AppExtension extends Extension
 {
+    /**
+     * @codeCoverageIgnore
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader(

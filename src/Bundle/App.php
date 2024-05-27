@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Bundle;
+namespace Shrikeh\App\Bundle;
 
-use RpHaven\App\Bundle\DependencyInjection\AppExtension;
+use Shrikeh\App\Bundle\DependencyInjection\AppExtension;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 final class App extends AbstractBundle

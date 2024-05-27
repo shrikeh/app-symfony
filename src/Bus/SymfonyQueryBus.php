@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Bus;
+namespace Shrikeh\App\Bus;
 
-use RpHaven\App\Bus\Exception\ErrorHandlingQuery;
-use RpHaven\App\Message\Query;
-use RpHaven\App\Message\Result;
-use RpHaven\App\Query\QueryBus;
-use RpHaven\App\Query\QueryBus\Exception\QueryBusException;
-use Symfony\Component\Messenger\HandleTrait;
+use Shrikeh\App\Bus\Exception\ErrorHandlingQuery;
+use Shrikeh\App\Bus\Exception\QueryMustReturnAResult;
+use Shrikeh\App\Message\Query;
+use Shrikeh\App\Message\Result;
+use Shrikeh\App\Query\QueryBus;
+use Shrikeh\App\Query\QueryBus\Exception\QueryBusException;
 use Throwable;
 
 final readonly class SymfonyQueryBus implements QueryBus
 {
-    public function __construct(private CorrelatingMessageBus $queryBus)
+    public function __construct(private MessageBus $queryBus)
     {
     }
 
@@ -26,9 +26,15 @@ final readonly class SymfonyQueryBus implements QueryBus
     public function handle(Query $query): Result
     {
         try {
-            return $this->queryBus->message($query);
+            $result = $this->queryBus->message($query);
         } catch (Throwable $exc) {
             throw new ErrorHandlingQuery($query, $exc);
         }
+        /** @psalm-assert Result $result */
+        if (!$result instanceof Result) {
+            throw new QueryMustReturnAResult($query);
+        }
+
+        return $result;
     }
 }

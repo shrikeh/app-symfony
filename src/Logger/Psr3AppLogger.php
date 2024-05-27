@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Logger;
+namespace Shrikeh\App\Logger;
 
 use Psr\Log\LoggerInterface;
-use RpHaven\App\Log;
-use RpHaven\App\Log\Context;
-use RpHaven\App\Log\Level;
-use RpHaven\App\Log\Level\Psr3;
+use Shrikeh\App\Log;
+use Shrikeh\App\Log\Context;
+use Shrikeh\App\Log\Level;
+use Shrikeh\App\Log\Level\Psr3;
 use Stringable;
 
 final readonly class Psr3AppLogger implements Log

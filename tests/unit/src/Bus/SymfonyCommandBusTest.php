@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Bus;
 
-use Prophecy\PhpUnit\ProphecyTrait;
-use RpHaven\App\Bus\Exception\ErrorHandlingCommand;
-use RpHaven\App\Bus\SymfonyCommandBus;
 use PHPUnit\Framework\TestCase;
-use RpHaven\App\Command;
-use RpHaven\App\Result;
-use Symfony\Component\Messenger\Envelope;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Shrikeh\App\Bus\Exception\ErrorHandlingCommand;
+use Shrikeh\App\Bus\MessageBus;
+use Shrikeh\App\Bus\SymfonyCommandBus;
+use Shrikeh\App\Message\Command;
+use Shrikeh\App\Message\Result;
 use Symfony\Component\Messenger\Exception\LogicException;
-use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\HandledStamp;
-use Symfony\Component\Messenger\Stamp\StampInterface;
 
 final class SymfonyCommandBusTest extends TestCase
 {
@@ -24,13 +21,10 @@ final class SymfonyCommandBusTest extends TestCase
     {
         $command = $this->prophesize(Command::class)->reveal();
         $result = $this->prophesize(Result::class)->reveal();
-        $stamp = new HandledStamp($result, 'test');
 
-        $envelope = new Envelope($command, [$stamp]);
+        $messageBus = $this->prophesize(MessageBus::class);
 
-        $messageBus = $this->prophesize(MessageBusInterface::class);
-
-        $messageBus->dispatch($command)->willReturn($envelope);
+        $messageBus->message($command)->willReturn($result);
 
         $commandBus = new SymfonyCommandBus($messageBus->reveal());
 
@@ -43,13 +37,9 @@ final class SymfonyCommandBusTest extends TestCase
     public function testItCanReturnNull(): void
     {
         $command = $this->prophesize(Command::class)->reveal();
-        $stamp = new HandledStamp(null, 'test');
+        $messageBus = $this->prophesize(MessageBus::class);
 
-        $envelope = new Envelope($command, [$stamp]);
-
-        $messageBus = $this->prophesize(MessageBusInterface::class);
-
-        $messageBus->dispatch($command)->willReturn($envelope);
+        $messageBus->message($command)->willReturn(null);
 
         $commandBus = new SymfonyCommandBus($messageBus->reveal());
 
@@ -59,11 +49,17 @@ final class SymfonyCommandBusTest extends TestCase
     public function testItThrowsAnExceptionIfTheMessageBusThrowsAnException(): void
     {
         $command = $this->prophesize(Command::class)->reveal();
-        $messageBus = $this->prophesize(MessageBusInterface::class);
+        $messageBus = $this->prophesize(MessageBus::class);
 
         $exception = new LogicException('foo');
-        $messageBus->dispatch($command)->willThrow($exception);
+        $messageBus->message($command)->willThrow($exception);
+
         $this->expectExceptionObject(new ErrorHandlingCommand($command, $exception));
+        $this->expectExceptionMessage(sprintf(
+            ErrorHandlingCommand::MSG_FORMAT,
+            get_class($command),
+            $exception->getMessage(),
+        ));
 
         $commandBus = new SymfonyCommandBus($messageBus->reveal());
 

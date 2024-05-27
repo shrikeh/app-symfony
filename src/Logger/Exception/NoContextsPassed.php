@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Logger\Exception;
+namespace Shrikeh\App\Logger\Exception;
 
 use InvalidArgumentException;
-use RpHaven\App\Log\Exception\LogException;
+use Shrikeh\App\Log\Exception\LogException;
 
 final class NoContextsPassed extends InvalidArgumentException implements LogException
 {
-    public const MSG = 'You must pass at least one Context to the app logger';
+    public const string MSG = 'You must pass at least one Context to the app logger';
 
     public function __construct()
     {

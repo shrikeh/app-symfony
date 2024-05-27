@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Bus;
+namespace Shrikeh\App\Bus;
 
-use RpHaven\App\Log\Context;
+use Shrikeh\App\Log\Context;
 
 enum BusContext: string implements Context
 {

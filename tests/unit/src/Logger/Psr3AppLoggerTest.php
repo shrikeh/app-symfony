@@ -7,18 +7,18 @@ namespace Tests\Unit\Logger;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use RpHaven\App\Log\Context\App;
-use RpHaven\App\Log\Level\Psr3;
-use RpHaven\App\Logger\Exception\NoContextsPassed;
-use RpHaven\App\Logger\Psr3AppLogger;
+use Shrikeh\App\Log\Context\App;
+use Shrikeh\App\Log\Level\Psr3;
+use Shrikeh\App\Logger\Exception\NoContextsPassed;
+use Shrikeh\App\Logger\Psr3AppLogger;
 use PHPUnit\Framework\TestCase;
-use RpHaven\App\Logger\Traits\ContextualLogger;
+use Shrikeh\App\Logger\Traits\ContextualLogger;
 
 final class Psr3AppLoggerTest extends TestCase
 {
-
     use ProphecyTrait;
     use ContextualLogger;
+
     public function testItCanLog(): void
     {
         $message = 'foo-bar-baz';

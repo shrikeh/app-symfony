@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="@package_version@" timestamp="2024-05-27T19:04:36+00:00">
+  <file name="Shrikeh\App\Uid\Id\Traits\Ulid\">
+    <violation beginline="1" rule="Stable Abstractions Principle" ruleset="Stable Abstractions Principle" externalInfoUrl="http://www.phpmetrics.org/documentation/index.html" priority="3">Packages should be either abstract and stable or concrete and instable.
+
+This package is instable and abstract.</violation>
+  </file>
+  <file name="Shrikeh\App\Logger\Traits\">
+    <violation beginline="1" rule="Stable Abstractions Principle" ruleset="Stable Abstractions Principle" externalInfoUrl="http://www.phpmetrics.org/documentation/index.html" priority="3">Packages should be either abstract and stable or concrete and instable.
+
+This package is instable and abstract.</violation>
+  </file>
+</pmd>

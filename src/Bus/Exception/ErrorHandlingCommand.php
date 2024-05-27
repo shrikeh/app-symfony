@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Bus\Exception;
+namespace Shrikeh\App\Bus\Exception;
 
-use RpHaven\App\Message\Command;
-use RpHaven\App\Command\CommandBus\Exception\CommandBusException;
+use Shrikeh\App\Message\Command;
+use Shrikeh\App\Command\CommandBus\Exception\CommandBusException;
 use RuntimeException;
 use Throwable;
 
 final class ErrorHandlingCommand extends RuntimeException implements CommandBusException, SymfonyMessageBusException
 {
-    public const MSG_FORMAT = 'Error handling command %s: %s';
+    public const string MSG_FORMAT = 'Error handling command %s: %s';
 
     public function __construct(public readonly Command $command, Throwable $previous)
     {

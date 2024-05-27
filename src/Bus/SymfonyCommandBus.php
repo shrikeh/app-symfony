@@ -2,27 +2,25 @@
 
 declare(strict_types=1);
 
-namespace RpHaven\App\Bus;
+namespace Shrikeh\App\Bus;
 
-use RpHaven\App\Bus\Exception\ErrorHandlingCommand;
-use RpHaven\App\Command\CommandBus;
-use RpHaven\App\Message\Command;
-use RpHaven\App\Message\Result;
-use Symfony\Component\Messenger\HandleTrait;
-use Symfony\Component\Messenger\MessageBusInterface;
+use Shrikeh\App\Bus\Exception\ErrorHandlingCommand;
+use Shrikeh\App\Command\CommandBus;
+use Shrikeh\App\Message\Command;
+use Shrikeh\App\Message\Result;
 use Throwable;
 
 final readonly class SymfonyCommandBus implements CommandBus
 {
 
-    public function __construct(private CorrelatingMessageBus $commandBus)
+    public function __construct(private MessageBus $messageBus)
     {
     }
 
     public function handle(Command $command): ?Result
     {
         try {
-            return $this->commandBus->message($command);
+            return $this->messageBus->message($command);
         } catch (Throwable $exc) {
             throw new ErrorHandlingCommand($command, $exc);
         }

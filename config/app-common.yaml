@@ -5,27 +5,27 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-  RpHaven\App\:
+  Shrikeh\App\:
     resource: '../src/'
     exclude:
       - '../src/Uid/Id'
     
-  RpHaven\App\Bus\SymfonyCommandBus: ~
-  RpHaven\App\Bus\SymfonyQueryBus: ~
+  Shrikeh\App\Bus\SymfonyCommandBus: ~
+  Shrikeh\App\Bus\SymfonyQueryBus: ~
 
-  RpHaven\App\Logger\Psr3AppLogger: ~
-  RpHaven\App\Log: '@RpHaven\App\Logger\Psr3AppLogger'
+  Shrikeh\App\Logger\Psr3AppLogger: ~
+  Shrikeh\App\Log: '@Shrikeh\App\Logger\Psr3AppLogger'
 
-  RpHaven\App\Command\CommandBus: '@RpHaven\App\Bus\SymfonyCommandBus'
-  RpHaven\App\Command\QueryBus: '@RpHaven\App\Bus\SymfonyQueryBus'
+  Shrikeh\App\Command\CommandBus: '@Shrikeh\App\Bus\SymfonyCommandBus'
+  Shrikeh\App\Command\QueryBus: '@Shrikeh\App\Bus\SymfonyQueryBus'
 
   _instanceof:
-    RpHaven\Uid\UidFactory:
+    Shrikeh\Uid\UidFactory:
       tags:
         - { name: uid.factory }
-    RpHaven\App\Query\QueryHandler:
+    Shrikeh\App\Query\QueryHandler:
       tags:
         - { name: messenger.message_handler, bus: 'query.bus' }
-    RpHaven\App\Command\CommandHandler:
+    Shrikeh\App\Command\CommandHandler:
       tags:
         - { name: messenger.message_handler, bus: 'command.bus' }
