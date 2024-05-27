@@ -20,9 +20,6 @@ services:
   Shrikeh\App\Command\QueryBus: '@Shrikeh\App\Bus\SymfonyQueryBus'
 
   _instanceof:
-    Shrikeh\Uid\UidFactory:
-      tags:
-        - { name: uid.factory }
     Shrikeh\App\Query\QueryHandler:
       tags:
         - { name: messenger.message_handler, bus: 'query.bus' }
