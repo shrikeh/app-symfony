@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef4badd14f5472ef385fa9389081c8f2",
+    "content-hash": "adbbba7ae0bc6a0717a612597ff91e7b",
     "packages": [
         {
             "name": "nyholm/psr7",
@@ -450,7 +450,7 @@
         },
         {
             "name": "shrikeh/common-app",
-            "version": "dev-main",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shrikeh/common-app.git",
@@ -470,7 +470,6 @@
                 "shrikeh/testing-metapackage": ">=0.3",
                 "symfony/uid": "^7.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "composer-normalize": {
@@ -8058,9 +8057,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "shrikeh/common-app": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
