@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Bus;
+namespace Shrikeh\SymfonyApp\Bus;
 
-use Shrikeh\App\Bus\Exception\ErrorHandlingQuery;
-use Shrikeh\App\Bus\Exception\QueryMustReturnAResult;
+use Shrikeh\SymfonyApp\Bus\Exception\ErrorHandlingQuery;
+use Shrikeh\SymfonyApp\Bus\Exception\QueryMustReturnAResult;
 use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
 use Shrikeh\App\Query\QueryBus;

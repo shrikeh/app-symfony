@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Bundle;
 
-use Shrikeh\App\Bundle\App;
+use Shrikeh\SymfonyApp\Bundle\App;
 use PHPUnit\Framework\TestCase;
-use Shrikeh\App\Bundle\DependencyInjection\AppExtension;
+use Shrikeh\SymfonyApp\Bundle\DependencyInjection\AppExtension;
 
 final class AppTest extends TestCase
 {

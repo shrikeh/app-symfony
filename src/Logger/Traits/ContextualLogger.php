@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Logger\Traits;
+namespace Shrikeh\SymfonyApp\Logger\Traits;
 
 use Shrikeh\App\Log\Context;
-use Shrikeh\App\Logger\Exception\NoContextsPassed;
+use Shrikeh\SymfonyApp\Logger\Exception\NoContextsPassed;
 
 trait ContextualLogger
 {

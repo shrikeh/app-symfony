@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Shrikeh\\App\\": "src"
+            "Shrikeh\\SymfonyApp\\": "src"
         }
     },
     "repositories": [

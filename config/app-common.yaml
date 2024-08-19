@@ -5,24 +5,24 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-  Shrikeh\App\:
+  Shrikeh\SymfonyApp\:
     resource: '../src/'
     exclude:
       - '../src/Uid/Id'
     
-  Shrikeh\App\Bus\SymfonyCommandBus: ~
-  Shrikeh\App\Bus\SymfonyQueryBus: ~
+  Shrikeh\SymfonyApp\Bus\SymfonyCommandBus: ~
+  Shrikeh\SymfonyApp\Bus\SymfonyQueryBus: ~
 
-  Shrikeh\App\Logger\Psr3AppLogger: ~
-  Shrikeh\App\Log: '@Shrikeh\App\Logger\Psr3AppLogger'
+  Shrikeh\SymfonyApp\Logger\Psr3AppLogger: ~
+  Shrikeh\SymfonyApp\Log: '@Shrikeh\App\Logger\Psr3AppLogger'
 
-  Shrikeh\App\Command\CommandBus: '@Shrikeh\App\Bus\SymfonyCommandBus'
-  Shrikeh\App\Command\QueryBus: '@Shrikeh\App\Bus\SymfonyQueryBus'
+  Shrikeh\SymfonyApp\Command\CommandBus: '@Shrikeh\App\Bus\SymfonyCommandBus'
+  Shrikeh\SymfonyApp\Command\QueryBus: '@Shrikeh\App\Bus\SymfonyQueryBus'
 
   _instanceof:
-    Shrikeh\App\Query\QueryHandler:
+    Shrikeh\SymfonyApp\Query\QueryHandler:
       tags:
         - { name: messenger.message_handler, bus: 'query.bus' }
-    Shrikeh\App\Command\CommandHandler:
+    Shrikeh\SymfonyApp\Command\CommandHandler:
       tags:
         - { name: messenger.message_handler, bus: 'command.bus' }

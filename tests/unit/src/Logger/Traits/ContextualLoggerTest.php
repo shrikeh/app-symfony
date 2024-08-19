@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Logger\Traits;
 
-use Shrikeh\App\Log\Context;
-use Shrikeh\App\Log\Context\App;
-use Shrikeh\App\Logger\Exception\NoContextsPassed;
-use Shrikeh\App\Logger\Traits\ContextualLogger;
 use PHPUnit\Framework\TestCase;
+use Shrikeh\App\Log\Context\App;
+use Shrikeh\SymfonyApp\Logger\Exception\NoContextsPassed;
+use Shrikeh\SymfonyApp\Logger\Traits\ContextualLogger;
 
 final class ContextualLoggerTest extends TestCase
 {
@@ -26,8 +25,8 @@ final class ContextualLoggerTest extends TestCase
             App::COMMAND_HANDLER,
             App::COMMAND_HANDLER,
             App::QUERY_HANDLER
-        )
-        ;
+        );
+
         $this->assertSame([
             App::COMMAND_HANDLER->value,
             App::QUERY_HANDLER->value,

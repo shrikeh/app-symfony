@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Bus\Exception;
+namespace Shrikeh\SymfonyApp\Bus\Exception;
 
 use Throwable;
 

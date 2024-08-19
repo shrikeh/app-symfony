@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Logger;
+namespace Shrikeh\SymfonyApp\Logger;
 
 use Psr\Log\LoggerInterface;
 use Shrikeh\App\Log;
@@ -13,13 +13,11 @@ use Stringable;
 
 final readonly class Psr3AppLogger implements Log
 {
-
     use Traits\ContextualLogger;
     use Traits\LevelLogger;
 
     public function __construct(private LoggerInterface $logger)
     {
-
     }
 
     public function emergency(Stringable|string $message, Context ...$contexts): void

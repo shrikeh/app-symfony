@@ -2,20 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Bus\Exception;
+namespace Shrikeh\SymfonyApp\Bus\Exception;
 
 use Shrikeh\App\Message\Query;
 use Shrikeh\App\Query\QueryBus\Exception\QueryBusException;
 use RuntimeException;
+use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
 use Throwable;
 
 final class ErrorHandlingQuery extends RuntimeException implements QueryBusException, SymfonyMessageBusException
 {
-    public const string MSG_FORMAT = 'Error handling query %s: %s';
+    public const ExceptionMessage MSG = ExceptionMessage::ERROR_HANDLING_QUERY;
     public function __construct(public readonly Query $query, Throwable $previous)
     {
         parent::__construct(
-            message: sprintf(self::MSG_FORMAT, get_class($this->query), $previous->getMessage()),
+            message: self::MSG->message(get_class($this->query), $previous->getMessage()),
             previous: $previous,
         );
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Logger\Exception;
+namespace Shrikeh\SymfonyApp\Logger\Exception;
 
 use InvalidArgumentException;
 use Shrikeh\App\Log\Exception\LogException;

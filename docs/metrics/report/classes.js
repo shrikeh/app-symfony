@@ -49,7 +49,7 @@ var classes = [
         "ccn": 1,
         "ccnMethodMax": 1,
         "externals": [
-            "Shrikeh\\App\\Message\\Correlation\\CorrelationId",
+            "Shrikeh\\App\\ExceptionMessage\\Correlation\\CorrelationId",
             "DateTimeInterface",
             "DateTimeImmutable",
             "Symfony\\Component\\Uid\\Ulid",
@@ -60,7 +60,7 @@ var classes = [
         ],
         "parents": [],
         "implements": [
-            "Shrikeh\\App\\Message\\Correlation\\CorrelationId"
+            "Shrikeh\\App\\ExceptionMessage\\Correlation\\CorrelationId"
         ],
         "lcom": 4,
         "length": 11,
@@ -287,7 +287,7 @@ var classes = [
             "RuntimeException",
             "Shrikeh\\App\\Query\\QueryBus\\Exception\\QueryBusException",
             "Shrikeh\\App\\Bus\\Exception\\SymfonyMessageBusException",
-            "Shrikeh\\App\\Message\\Query",
+            "Shrikeh\\App\\ExceptionMessage\\Query",
             "Throwable"
         ],
         "parents": [
@@ -359,7 +359,7 @@ var classes = [
             "RuntimeException",
             "Shrikeh\\App\\Command\\CommandBus\\Exception\\CommandBusException",
             "Shrikeh\\App\\Bus\\Exception\\SymfonyMessageBusException",
-            "Shrikeh\\App\\Message\\Command",
+            "Shrikeh\\App\\ExceptionMessage\\Command",
             "Throwable"
         ],
         "parents": [
@@ -430,7 +430,7 @@ var classes = [
         "externals": [
             "LogicException",
             "Shrikeh\\App\\Bus\\Exception\\SymfonyMessageBusException",
-            "Shrikeh\\App\\Message\\Query"
+            "Shrikeh\\App\\ExceptionMessage\\Query"
         ],
         "parents": [
             "LogicException"
@@ -521,9 +521,9 @@ var classes = [
             "Shrikeh\\App\\Bus\\MessageBus",
             "Symfony\\Component\\Messenger\\MessageBusInterface",
             "Shrikeh\\App\\Log",
-            "Shrikeh\\App\\Message",
-            "Shrikeh\\App\\Message\\Correlated",
-            "Shrikeh\\App\\Message\\Correlated"
+            "Shrikeh\\App\\ExceptionMessage",
+            "Shrikeh\\App\\ExceptionMessage\\Correlated",
+            "Shrikeh\\App\\ExceptionMessage\\Correlated"
         ],
         "parents": [],
         "implements": [
@@ -597,8 +597,8 @@ var classes = [
         "externals": [
             "Shrikeh\\App\\Query\\QueryBus",
             "Shrikeh\\App\\Bus\\MessageBus",
-            "Shrikeh\\App\\Message\\Result",
-            "Shrikeh\\App\\Message\\Query",
+            "Shrikeh\\App\\ExceptionMessage\\Result",
+            "Shrikeh\\App\\ExceptionMessage\\Query",
             "Shrikeh\\App\\Bus\\Exception\\ErrorHandlingQuery",
             "Shrikeh\\App\\Bus\\Exception\\QueryMustReturnAResult"
         ],
@@ -674,7 +674,7 @@ var classes = [
         "externals": [
             "Shrikeh\\App\\Command\\CommandBus",
             "Shrikeh\\App\\Bus\\MessageBus",
-            "Shrikeh\\App\\Message\\Command",
+            "Shrikeh\\App\\ExceptionMessage\\Command",
             "Shrikeh\\App\\Bus\\Exception\\ErrorHandlingCommand"
         ],
         "parents": [],

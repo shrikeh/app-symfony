@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Uid\Id\Traits\Ulid;
+namespace Shrikeh\SymfonyApp\Uid\Id\Traits\Ulid;
 
 use Symfony\Component\Uid\AbstractUid;
 use Symfony\Component\Uid\Ulid;

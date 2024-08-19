@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Bundle\DependencyInjection;
+namespace Shrikeh\SymfonyApp\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

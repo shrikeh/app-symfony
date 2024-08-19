@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\App\Bus;
+namespace Shrikeh\SymfonyApp\Bus;
 
-use Shrikeh\App\Bus\Exception\ErrorHandlingCommand;
+use Shrikeh\SymfonyApp\Bus\Exception\ErrorHandlingCommand;
 use Shrikeh\App\Command\CommandBus;
 use Shrikeh\App\Message\Command;
 use Shrikeh\App\Message\Result;
@@ -17,7 +17,7 @@ final readonly class SymfonyCommandBus implements CommandBus
     {
     }
 
-    public function handle(Command $command): ?Result
+    public function handle(Command $command): Result
     {
         try {
             return $this->messageBus->message($command);

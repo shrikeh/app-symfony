@@ -6,9 +6,9 @@ namespace Tests\Unit\Bus;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Shrikeh\App\Bus\Exception\ErrorHandlingCommand;
-use Shrikeh\App\Bus\MessageBus;
-use Shrikeh\App\Bus\SymfonyCommandBus;
+use Shrikeh\SymfonyApp\Bus\Exception\ErrorHandlingCommand;
+use Shrikeh\SymfonyApp\Bus\MessageBus;
+use Shrikeh\SymfonyApp\Bus\SymfonyCommandBus;
 use Shrikeh\App\Message\Command;
 use Shrikeh\App\Message\Result;
 use Symfony\Component\Messenger\Exception\LogicException;
@@ -34,18 +34,6 @@ final class SymfonyCommandBusTest extends TestCase
         );
     }
 
-    public function testItCanReturnNull(): void
-    {
-        $command = $this->prophesize(Command::class)->reveal();
-        $messageBus = $this->prophesize(MessageBus::class);
-
-        $messageBus->message($command)->willReturn(null);
-
-        $commandBus = new SymfonyCommandBus($messageBus->reveal());
-
-        $this->assertNull($commandBus->handle($command));
-    }
-
     public function testItThrowsAnExceptionIfTheMessageBusThrowsAnException(): void
     {
         $command = $this->prophesize(Command::class)->reveal();
@@ -55,8 +43,7 @@ final class SymfonyCommandBusTest extends TestCase
         $messageBus->message($command)->willThrow($exception);
 
         $this->expectExceptionObject(new ErrorHandlingCommand($command, $exception));
-        $this->expectExceptionMessage(sprintf(
-            ErrorHandlingCommand::MSG_FORMAT,
+        $this->expectExceptionMessage(ErrorHandlingCommand::MSG->message(
             get_class($command),
             $exception->getMessage(),
         ));
