@@ -20,9 +20,13 @@ use Shrikeh\App\Log;
 use Shrikeh\App\Message\Command;
 use Shrikeh\App\Message\Correlated;
 use Shrikeh\App\Message\Correlation;
+use Shrikeh\App\Message\Correlation\Traits\WithCorrelation;
+use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
+use Shrikeh\App\Query\QueryBus;
 use Shrikeh\SymfonyApp\Bus\BusContext;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\BusMustReturnCorrelatedResult;
+use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedMessageUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedResultWasUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\ResultCorrelationMismatch;
 use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
@@ -38,9 +42,6 @@ final class CorrelationCommandBusTest extends TestCase
     public function testItReturnsAResult(): void
     {
         $correlation = new Correlation(CorrelationUlid::init());
-        $command = $this->prophesize(Correlated::class);
-        $command->willImplement(Command::class);
-        $command->correlated()->willReturn($correlation);
 
         $result = $this->prophesize(Correlated::class);
         $result->willImplement(Result::class);
@@ -48,7 +49,7 @@ final class CorrelationCommandBusTest extends TestCase
         $result->correlated()->willReturn($correlation);
 
         $inner = $this->prophesize(CommandBus::class);
-        $command = $command->reveal();
+        $command = $this->correlatedCommand()->withCorrelation($correlation);
         $result = $result->reveal();
         $inner->handle($command)->willReturn($result);
 
@@ -70,17 +71,27 @@ final class CorrelationCommandBusTest extends TestCase
         $this->assertSame($result, $decorator->handle($command));
     }
 
+    public function testItThrowsAnExceptionIfTheCommandIsUncorrelated(): void
+    {
+        $command = $this->correlatedCommand();
+        $inner = $this->prophesize(CommandBus::class)->reveal();
+        $log = $this->prophesize(Log::class)->reveal();
+
+        $decorator = new CorrelationCommandBus($inner, $log);
+
+        $this->expectExceptionObject(new CorrelatedMessageUncorrelated($command));
+        $this->expectExceptionMessage(CorrelatedMessageUncorrelated::MSG->message(get_class($command)));
+        $decorator->handle($command);
+    }
+
     public function testItThrowsAnExceptionIfTheResultIsNotCorrelated(): void
     {
         $correlation = new Correlation(CorrelationUlid::init());
-        $command = $this->prophesize(Correlated::class);
-        $command->willImplement(Command::class);
-        $command->correlated()->willReturn($correlation);
 
         $result = $this->prophesize(Result::class);
 
         $inner = $this->prophesize(CommandBus::class);
-        $command = $command->reveal();
+        $command = $this->correlatedCommand()->withCorrelation($correlation);
         $result = $result->reveal();
         $inner->handle($command)->willReturn($result);
 
@@ -91,11 +102,6 @@ final class CorrelationCommandBusTest extends TestCase
             $correlation->dateTime->format(CorrelationCommandBus::LOG_FORMAT_DATETIME)
         ), BusContext::MESSAGE_START)->shouldBeCalledOnce();
 
-        $log->info(sprintf(
-            CorrelationCommandBus::MSG_CORRELATION_END,
-            $correlation->correlationId->toString(),
-            $correlation->dateTime->format(CorrelationCommandBus::LOG_FORMAT_DATETIME)
-        ), BusContext::MESSAGE_END)->shouldBeCalledOnce();
 
         $inner = $inner->reveal();
         $decorator = new CorrelationCommandBus($inner, $log->reveal());
@@ -112,16 +118,13 @@ final class CorrelationCommandBusTest extends TestCase
     public function testItThrowsAnExceptionIfTheResultDoesNotHaveACorrelation(): void
     {
         $correlation = new Correlation(CorrelationUlid::init());
-        $command = $this->prophesize(Correlated::class);
-        $command->willImplement(Command::class);
-        $command->correlated()->willReturn($correlation);
+        $command = $this->correlatedCommand()->withCorrelation($correlation);
 
         $result = $this->prophesize(Correlated::class);
         $result->willImplement(Result::class);
         $result->hasCorrelation()->willReturn(false);
 
         $inner = $this->prophesize(CommandBus::class);
-        $command = $command->reveal();
         $result = $result->reveal();
         $inner->handle($command)->willReturn($result);
 
@@ -131,13 +134,6 @@ final class CorrelationCommandBusTest extends TestCase
             $correlation->correlationId->toString(),
             $correlation->dateTime->format(CorrelationCommandBus::LOG_FORMAT_DATETIME)
         ), BusContext::MESSAGE_START)->shouldBeCalledOnce();
-
-        $log->info(sprintf(
-            CorrelationCommandBus::MSG_CORRELATION_END,
-            $correlation->correlationId->toString(),
-            $correlation->dateTime->format(CorrelationCommandBus::LOG_FORMAT_DATETIME)
-        ), BusContext::MESSAGE_END)->shouldBeCalledOnce();
-
         $inner = $inner->reveal();
         $decorator = new CorrelationCommandBus($inner, $log->reveal());
 
@@ -152,9 +148,7 @@ final class CorrelationCommandBusTest extends TestCase
     public function testItThrowsAnExceptionIfTheResuCorrelationDoesNotMatchTheCommandCorrelation(): void
     {
         $commandCorrelation = new Correlation(CorrelationUlid::init());
-        $command = $this->prophesize(Correlated::class);
-        $command->willImplement(Command::class);
-        $command->correlated()->willReturn($commandCorrelation);
+        $command = $this->correlatedCommand()->withCorrelation($commandCorrelation);
 
         $result = $this->prophesize(Correlated::class);
         $result->willImplement(Result::class);
@@ -162,7 +156,6 @@ final class CorrelationCommandBusTest extends TestCase
         $result->correlated()->willReturn(new Correlation(CorrelationUlid::init()));
 
         $inner = $this->prophesize(CommandBus::class);
-        $command = $command->reveal();
         $result = $result->reveal();
         $inner->handle($command)->willReturn($result);
 
@@ -172,12 +165,6 @@ final class CorrelationCommandBusTest extends TestCase
             $commandCorrelation->correlationId->toString(),
             $commandCorrelation->dateTime->format(CorrelationCommandBus::LOG_FORMAT_DATETIME)
         ), BusContext::MESSAGE_START)->shouldBeCalledOnce();
-
-        $log->info(sprintf(
-            CorrelationCommandBus::MSG_CORRELATION_END,
-            $commandCorrelation->correlationId->toString(),
-            $commandCorrelation->dateTime->format(CorrelationCommandBus::LOG_FORMAT_DATETIME)
-        ), BusContext::MESSAGE_END)->shouldBeCalledOnce();
 
         $inner = $inner->reveal();
         $decorator = new CorrelationCommandBus($inner, $log->reveal());
@@ -189,5 +176,12 @@ final class CorrelationCommandBusTest extends TestCase
         ));
 
         $decorator->handle($command);
+    }
+
+    private function correlatedCommand(): Command&Correlated
+    {
+        return new class () implements Command, Correlated {
+            use WithCorrelation;
+        };
     }
 }

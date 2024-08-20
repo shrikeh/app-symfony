@@ -19,6 +19,7 @@ use Shrikeh\App\Log;
 use Shrikeh\App\Message\Command;
 use Shrikeh\App\Message\Correlated;
 use Shrikeh\App\Message\Result;
+use Shrikeh\SymfonyApp\Bus\Decorator\Traits\AssertMessageCorrelation;
 use Shrikeh\SymfonyApp\Bus\Decorator\Traits\AssertResultCorrelation;
 use Shrikeh\SymfonyApp\Bus\Decorator\Traits\CorrelationLog;
 
@@ -27,6 +28,7 @@ use Shrikeh\SymfonyApp\Bus\Decorator\Traits\CorrelationLog;
  */
 final readonly class CorrelationCommandBus implements CorrelatingCommandBus
 {
+    use AssertMessageCorrelation;
     use AssertResultCorrelation;
     use CorrelationLog;
 
@@ -41,10 +43,11 @@ final readonly class CorrelationCommandBus implements CorrelatingCommandBus
      */
     public function handle(Correlated&Command $command): Result&Correlated
     {
+        $this->assertMessage($command);
         $this->correlationStart($command);
         $result = $this->bus->handle($command);
-        $this->correlationEnd($command);
         $this->assertResult($command, $result);
+        $this->correlationEnd($command);
         /** @var Result&Correlated*/
         return $result;
     }

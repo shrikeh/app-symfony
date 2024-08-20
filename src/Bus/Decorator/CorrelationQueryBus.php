@@ -19,6 +19,7 @@ use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
 use Shrikeh\App\Query\QueryBus;
 use Shrikeh\App\Query\QueryBus\CorrelatingQueryBus;
+use Shrikeh\SymfonyApp\Bus\Decorator\Traits\AssertMessageCorrelation;
 use Shrikeh\SymfonyApp\Bus\Decorator\Traits\AssertResultCorrelation;
 use Shrikeh\SymfonyApp\Bus\Decorator\Traits\CorrelationLog;
 use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
@@ -31,6 +32,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
 )]
 final readonly class CorrelationQueryBus implements CorrelatingQueryBus
 {
+    use AssertMessageCorrelation;
     use AssertResultCorrelation;
     use CorrelationLog;
 
@@ -46,10 +48,11 @@ final readonly class CorrelationQueryBus implements CorrelatingQueryBus
      */
     public function handle(Correlated&Query $query): Result&Correlated
     {
+        $this->assertMessage($query);
         $this->correlationStart($query);
         $result = $this->bus->handle($query);
-        $this->correlationEnd($query);
         $this->assertResult($query, $result);
+        $this->correlationEnd($query);
 
         /** @var Result&Correlated*/
         return $result;

@@ -36,7 +36,7 @@ final readonly class CorrelatedMessage implements MiddlewareInterface
     {
         $handled = $envelope->last(HandledStamp::class);
         $result = $handled->getResult();
-        if ($result instanceof Correlated) {
+        if ($result instanceof Correlated && !$result->hasCorrelation()) {
             $this->logger->debug(sprintf('Adding Correlation to result %s', get_class($result)));
             $envelope = $this->handledEnvelope->update($envelope, $handled);
         }

@@ -15,6 +15,7 @@ namespace Shrikeh\SymfonyApp\Bus\Decorator;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Shrikeh\App\Message\Correlation\Traits\WithCorrelation;
 use Shrikeh\App\Query\QueryBus;
 use Shrikeh\App\Log;
 use Shrikeh\App\Message\Query;
@@ -23,6 +24,7 @@ use Shrikeh\App\Message\Correlation;
 use Shrikeh\App\Message\Result;
 use Shrikeh\SymfonyApp\Bus\BusContext;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\BusMustReturnCorrelatedResult;
+use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedMessageUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedResultWasUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\ResultCorrelationMismatch;
 use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
@@ -38,9 +40,7 @@ final class CorrelationQueryBusTest extends TestCase
     public function testItReturnsAResult(): void
     {
         $correlation = new Correlation(CorrelationUlid::init());
-        $query = $this->prophesize(Correlated::class);
-        $query->willImplement(Query::class);
-        $query->correlated()->willReturn($correlation);
+        $query = $this->correlatedQuery()->withCorrelation($correlation);
 
         $result = $this->prophesize(Correlated::class);
         $result->willImplement(Result::class);
@@ -48,7 +48,6 @@ final class CorrelationQueryBusTest extends TestCase
         $result->correlated()->willReturn($correlation);
 
         $inner = $this->prophesize(QueryBus::class);
-        $query = $query->reveal();
         $result = $result->reveal();
         $inner->handle($query)->willReturn($result);
 
@@ -70,17 +69,27 @@ final class CorrelationQueryBusTest extends TestCase
         $this->assertSame($result, $decorator->handle($query));
     }
 
+    public function testItThrowsAnExceptionIfTheQueryIsUncorrelated(): void
+    {
+        $query = $this->correlatedQuery();
+        $inner = $this->prophesize(QueryBus::class)->reveal();
+        $log = $this->prophesize(Log::class)->reveal();
+
+        $decorator = new CorrelationQueryBus($inner, $log);
+
+        $this->expectExceptionObject(new CorrelatedMessageUncorrelated($query));
+        $this->expectExceptionMessage(CorrelatedMessageUncorrelated::MSG->message(get_class($query)));
+        $decorator->handle($query);
+    }
+
     public function testItThrowsAnExceptionIfTheResultIsNotCorrelated(): void
     {
         $correlation = new Correlation(CorrelationUlid::init());
-        $query = $this->prophesize(Correlated::class);
-        $query->willImplement(Query::class);
-        $query->correlated()->willReturn($correlation);
+        $query = $this->correlatedQuery()->withCorrelation($correlation);
 
         $result = $this->prophesize(Result::class);
 
         $inner = $this->prophesize(QueryBus::class);
-        $query = $query->reveal();
         $result = $result->reveal();
         $inner->handle($query)->willReturn($result);
 
@@ -91,19 +100,13 @@ final class CorrelationQueryBusTest extends TestCase
             $correlation->dateTime->format(CorrelationQueryBus::LOG_FORMAT_DATETIME)
         ), BusContext::MESSAGE_START)->shouldBeCalledOnce();
 
-        $log->info(sprintf(
-            CorrelationQueryBus::MSG_CORRELATION_END,
-            $correlation->correlationId->toString(),
-            $correlation->dateTime->format(CorrelationQueryBus::LOG_FORMAT_DATETIME)
-        ), BusContext::MESSAGE_END)->shouldBeCalledOnce();
-
         $inner = $inner->reveal();
         $decorator = new CorrelationQueryBus($inner, $log->reveal());
 
         $this->expectExceptionObject(new BusMustReturnCorrelatedResult($inner, $result));
         $this->expectExceptionMessage(ExceptionMessage::RESULT_NOT_CORRELATED->message(
             get_class($inner),
-            get_class($result)
+            get_class($result),
         ));
 
         $decorator->handle($query);
@@ -112,16 +115,13 @@ final class CorrelationQueryBusTest extends TestCase
     public function testItThrowsAnExceptionIfTheResultDoesNotHaveACorrelation(): void
     {
         $correlation = new Correlation(CorrelationUlid::init());
-        $query = $this->prophesize(Correlated::class);
-        $query->willImplement(Query::class);
-        $query->correlated()->willReturn($correlation);
+        $query = $this->correlatedQuery()->withCorrelation($correlation);
 
         $result = $this->prophesize(Correlated::class);
         $result->willImplement(Result::class);
         $result->hasCorrelation()->willReturn(false);
 
         $inner = $this->prophesize(QueryBus::class);
-        $query = $query->reveal();
         $result = $result->reveal();
         $inner->handle($query)->willReturn($result);
 
@@ -131,12 +131,6 @@ final class CorrelationQueryBusTest extends TestCase
             $correlation->correlationId->toString(),
             $correlation->dateTime->format(CorrelationQueryBus::LOG_FORMAT_DATETIME)
         ), BusContext::MESSAGE_START)->shouldBeCalledOnce();
-
-        $log->info(sprintf(
-            CorrelationQueryBus::MSG_CORRELATION_END,
-            $correlation->correlationId->toString(),
-            $correlation->dateTime->format(CorrelationQueryBus::LOG_FORMAT_DATETIME)
-        ), BusContext::MESSAGE_END)->shouldBeCalledOnce();
 
         $inner = $inner->reveal();
         $decorator = new CorrelationQueryBus($inner, $log->reveal());
@@ -149,12 +143,10 @@ final class CorrelationQueryBusTest extends TestCase
         $decorator->handle($query);
     }
 
-    public function testItThrowsAnExceptionIfTheResuCorrelationDoesNotMatchTheCommandCorrelation(): void
+    public function testItThrowsAnExceptionIfTheResultCorrelationDoesNotMatchTheCommandCorrelation(): void
     {
         $queryCorrelation = new Correlation(CorrelationUlid::init());
-        $query = $this->prophesize(Correlated::class);
-        $query->willImplement(Query::class);
-        $query->correlated()->willReturn($queryCorrelation);
+        $query = $this->correlatedQuery()->withCorrelation($queryCorrelation);
 
         $result = $this->prophesize(Correlated::class);
         $result->willImplement(Result::class);
@@ -162,7 +154,6 @@ final class CorrelationQueryBusTest extends TestCase
         $result->correlated()->willReturn(new Correlation(CorrelationUlid::init()));
 
         $inner = $this->prophesize(QueryBus::class);
-        $query = $query->reveal();
         $result = $result->reveal();
         $inner->handle($query)->willReturn($result);
 
@@ -173,11 +164,6 @@ final class CorrelationQueryBusTest extends TestCase
             $queryCorrelation->dateTime->format(CorrelationQueryBus::LOG_FORMAT_DATETIME)
         ), BusContext::MESSAGE_START)->shouldBeCalledOnce();
 
-        $log->info(sprintf(
-            CorrelationQueryBus::MSG_CORRELATION_END,
-            $queryCorrelation->correlationId->toString(),
-            $queryCorrelation->dateTime->format(CorrelationQueryBus::LOG_FORMAT_DATETIME)
-        ), BusContext::MESSAGE_END)->shouldBeCalledOnce();
 
         $inner = $inner->reveal();
         $decorator = new CorrelationQueryBus($inner, $log->reveal());
@@ -189,5 +175,12 @@ final class CorrelationQueryBusTest extends TestCase
         ));
 
         $decorator->handle($query);
+    }
+
+    private function correlatedQuery(): Query&Correlated
+    {
+        return new class () implements Query, Correlated {
+            use WithCorrelation;
+        };
     }
 }

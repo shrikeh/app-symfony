@@ -32,6 +32,8 @@ EOF;
 
     case CORRELATION_MISMATCH = 'Correlation mismatch: CQRS correlation %s, but Result correlation %s';
 
+    case CORRELATED_MESSAGE_UNCORRELATED = 'Message of type %s was expected to have a correlation but it does not.';
+
     public function message(string ...$args): string
     {
         return sprintf($this->value, ...$args);
