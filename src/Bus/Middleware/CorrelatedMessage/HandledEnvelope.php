@@ -30,7 +30,7 @@ final readonly class HandledEnvelope
             static function (StampInterface $stamp) use ($envelope, $handledStamp): StampInterface {
                 if ($stamp === $handledStamp) {
                     /** @var Correlation $correlation */
-                    $correlation = $envelope->getMessage()->getCorrelation();
+                    $correlation = $envelope->getMessage()->correlated();
                     $stamp = new HandledStamp(
                         $handledStamp->getResult()->withCorrelation($correlation->update()),
                         $handledStamp->getHandlerName(),

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Uid\Id\Ulid;
 
-use Shrikeh\App\Uid\Id\Ulid\CorrelationUlid;
+use Shrikeh\SymfonyApp\Uid\Id\Ulid\CorrelationUlid;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Uid\Ulid;
 

@@ -9,10 +9,10 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Shrikeh\App\Log\Context\App;
 use Shrikeh\App\Log\Level\Psr3;
-use Shrikeh\App\Logger\Exception\NoContextsPassed;
-use Shrikeh\App\Logger\Psr3AppLogger;
+use Shrikeh\SymfonyApp\Logger\Exception\NoContextsPassed;
+use Shrikeh\SymfonyApp\Logger\Psr3AppLogger;
 use PHPUnit\Framework\TestCase;
-use Shrikeh\App\Logger\Traits\ContextualLogger;
+use Shrikeh\SymfonyApp\Logger\Traits\ContextualLogger;
 
 final class Psr3AppLoggerTest extends TestCase
 {

@@ -26,6 +26,8 @@ use Symfony\Component\Messenger\Stamp\HandledStamp;
  */
 final readonly class CorrelatedMessage implements MiddlewareInterface
 {
+
+    public const string MSG_DEBUG = 'Adding Correlation to Result %s';
     public function __construct(
         private HandledEnvelope $handledEnvelope,
         private LoggerInterface $logger,
@@ -37,7 +39,7 @@ final readonly class CorrelatedMessage implements MiddlewareInterface
         $handled = $envelope->last(HandledStamp::class);
         $result = $handled->getResult();
         if ($result instanceof Correlated && !$result->hasCorrelation()) {
-            $this->logger->debug(sprintf('Adding Correlation to result %s', get_class($result)));
+            $this->logger->debug(sprintf(self::MSG_DEBUG, get_class($result)));
             $envelope = $this->handledEnvelope->update($envelope, $handled);
         }
 

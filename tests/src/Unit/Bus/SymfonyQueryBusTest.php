@@ -6,11 +6,10 @@ namespace Tests\Unit\Bus;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Shrikeh\App\Bus\Exception\ErrorHandlingCommand;
-use Shrikeh\App\Bus\Exception\ErrorHandlingQuery;
-use Shrikeh\App\Bus\Exception\QueryMustReturnAResult;
-use Shrikeh\App\Bus\MessageBus;
-use Shrikeh\App\Bus\SymfonyQueryBus;
+use Shrikeh\SymfonyApp\Bus\Exception\ErrorHandlingQuery;
+use Shrikeh\SymfonyApp\Bus\Exception\QueryMustReturnAResult;
+use Shrikeh\SymfonyApp\Bus\MessageBus;
+use Shrikeh\SymfonyApp\Bus\SymfonyQueryBus;
 use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
 use Symfony\Component\Messenger\Exception\LogicException;
@@ -43,8 +42,7 @@ final class SymfonyQueryBusTest extends TestCase
         $exception = new LogicException('foo');
         $messageBus->message($query)->willThrow($exception);
         $this->expectExceptionObject(new ErrorHandlingQuery($query, $exception));
-        $this->expectExceptionMessage(sprintf(
-            ErrorHandlingQuery::MSG_FORMAT,
+        $this->expectExceptionMessage(ErrorHandlingQuery::MSG->message(
             get_class($query),
             $exception->getMessage(),
         ));
@@ -62,10 +60,7 @@ final class SymfonyQueryBusTest extends TestCase
         $queryBus = new SymfonyQueryBus($messageBus->reveal());
 
         $this->expectException(QueryMustReturnAResult::class);
-        $this->expectExceptionMessage(sprintf(
-            QueryMustReturnAResult::MSG,
-            get_class($query)
-        ));
+        $this->expectExceptionMessage(QueryMustReturnAResult::MSG->message(get_class($query)));
 
         $queryBus->handle($query);
     }

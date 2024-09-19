@@ -6,8 +6,8 @@ namespace Tests\Unit\Logger\Traits;
 
 use Shrikeh\App\Log\Context;
 use Shrikeh\App\Log\Context\App;
-use Shrikeh\App\Logger\Exception\NoContextsPassed;
-use Shrikeh\App\Logger\Traits\ContextualLogger;
+use Shrikeh\SymfonyApp\Logger\Exception\NoContextsPassed;
+use Shrikeh\SymfonyApp\Logger\Traits\ContextualLogger;
 use PHPUnit\Framework\TestCase;
 
 final class ContextualLoggerTest extends TestCase
