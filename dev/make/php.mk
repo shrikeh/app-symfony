@@ -4,7 +4,7 @@
 	bash -c "[[ -d ./build ]] || mkdir ./build";
 
 .composer-%: .build-dir
-	docker compose run --remove-orphans --entrypoint="composer $*" "${APP_CONTAINER}";
+	docker compose run --remove-orphans --rm --entrypoint="composer $*" "${APP_CONTAINER}";
 
 install:
 	$(MAKE) .composer-install;

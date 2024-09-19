@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\SymfonyApp\Uid\Id\Ulid;
+namespace Shrikeh\App\Uid\Id\Ulid;
 
 use DateTimeImmutable;
 use DateTimeInterface;
 use Shrikeh\App\Message\Correlation\CorrelationId;
-use Shrikeh\SymfonyApp\Uid\Id\Traits\Ulid\BinaryUlid;
-use Shrikeh\SymfonyApp\Uid\Id\Traits\Ulid\Rfc4122Uid;
+use Shrikeh\App\Uid\Id\Traits\Ulid\BinaryUlid;
+use Shrikeh\App\Uid\Id\Traits\Ulid\Rfc4122Uid;
 use Symfony\Component\Uid\Ulid;
 
 final readonly class CorrelationUlid implements CorrelationId
@@ -42,6 +42,6 @@ final readonly class CorrelationUlid implements CorrelationId
 
     public function matches(CorrelationId $correlationId): bool
     {
-        return $this->uid()->equals($correlationId->toString());
+        return $this->uid->toString() === $correlationId->toString();
     }
 }
