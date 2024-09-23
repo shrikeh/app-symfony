@@ -10,11 +10,23 @@ use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
 use Shrikeh\App\Query\QueryBus;
 use Shrikeh\App\Query\QueryBus\Exception\QueryBusException;
+use Shrikeh\SymfonyApp\Bus\Traits\ResultAssertion;
+use Symfony\Component\Messenger\HandleTrait;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Throwable;
 
-final readonly class SymfonyQueryBus implements QueryBus
+final class SymfonyQueryBus implements QueryBus
 {
-    public function __construct(private MessageBus $queryBus)
+    use ResultAssertion;
+    use HandleTrait {
+        handle as private handleQuery;
+    }
+
+    /**
+     * @param MessageBusInterface $messageBus
+     * @phpstan-ignore property.onlyWritten
+     */
+    public function __construct(private MessageBusInterface $messageBus)
     {
     }
 
@@ -26,14 +38,12 @@ final readonly class SymfonyQueryBus implements QueryBus
     public function handle(Query $query): Result
     {
         try {
-            $result = $this->queryBus->message($query);
+            $result = $this->handleQuery($query);
         } catch (Throwable $exc) {
             throw new ErrorHandlingQuery($query, $exc);
         }
-        /** @psalm-assert Result $result */
-        if (!$result instanceof Result) {
-            throw new QueryMustReturnAResult($query);
-        }
+
+        $this->assertResult($query, $result);
 
         return $result;
     }

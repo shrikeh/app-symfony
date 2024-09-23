@@ -13,6 +13,7 @@ final class AppExtension extends Extension
 {
     /**
      * @codeCoverageIgnore
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function load(array $configs, ContainerBuilder $container): void
     {

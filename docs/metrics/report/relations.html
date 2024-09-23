@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2024-05-27 19:04:36        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2024-09-23 13:56:59        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -93,7 +93,7 @@
                             <path d="M0 0h24v24H0z" fill="none">
                             <path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z">
                         </svg>
-                        Violations (2)
+                        Violations (5)
                     </a>
                 </li>
                                     <li>
@@ -262,14 +262,98 @@
 
     var relations = [
     {
-        "name": "\\Shrikeh\\App\\Uid\\Id\\Ulid\\CorrelationUlid",
+        "name": "\\Shrikeh\\SymfonyApp\\Logger\\Traits\\ContextualLogger",
         "size": 3000,
         "relations": [
-            "\\Shrikeh\\App\\Message\\Correlation\\CorrelationId",
-            "\\DateTimeInterface",
-            "\\DateTimeImmutable",
-            "\\Symfony\\Component\\Uid\\Ulid"
+            "\\Shrikeh\\App\\Log\\Context",
+            "\\Shrikeh\\SymfonyApp\\Logger\\Exception\\NoContextsPassed"
         ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Log\\Context",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Logger\\Exception\\NoContextsPassed",
+        "size": 3000,
+        "relations": [
+            "\\InvalidArgumentException",
+            "\\Shrikeh\\App\\Log\\Exception\\LogException"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Logger\\Traits\\LevelLogger",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Log\\Level"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Log\\Level",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Logger\\Psr3AppLogger",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Log",
+            "\\Psr\\Log\\LoggerInterface",
+            "\\Shrikeh\\App\\Log\\Context",
+            "\\Shrikeh\\App\\Log\\Level"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Log",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Psr\\Log\\LoggerInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\InvalidArgumentException",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\App\\Log\\Exception\\LogException",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Uid\\Id\\Traits\\Ulid\\Rfc4122Uid",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Component\\Uid\\Ulid",
+            "\\Symfony\\Component\\Uid\\AbstractUid"
+        ]
+    },
+    {
+        "name": "\\Symfony\\Component\\Uid\\Ulid",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Uid\\AbstractUid",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Uid\\Id\\Traits\\Ulid\\BinaryUlid",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Component\\Uid\\Ulid",
+            "\\Symfony\\Component\\Uid\\AbstractUid"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Correlation\\Id\\CorrelationUlid",
+        "size": 3000,
+        "relations": []
     },
     {
         "name": "\\Shrikeh\\App\\Message\\Correlation\\CorrelationId",
@@ -287,33 +371,165 @@
         "relations": []
     },
     {
-        "name": "\\Symfony\\Component\\Uid\\Ulid",
+        "name": "\\Shrikeh\\SymfonyApp\\Correlation\\CorrelationFactory\\UlidCorrelation",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\SymfonyApp\\Correlation\\CorrelationFactory",
+            "\\Shrikeh\\App\\Message\\Correlation",
+            "\\DateTimeInterface",
+            "\\DateTimeImmutable",
+            "\\Shrikeh\\SymfonyApp\\Correlation\\Id\\CorrelationUlid"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Correlation\\CorrelationFactory",
         "size": 3000,
         "relations": []
     },
     {
-        "name": "\\Shrikeh\\App\\Uid\\Id\\Traits\\Ulid\\BinaryUlid",
-        "size": 3000,
-        "relations": [
-            "\\Symfony\\Component\\Uid\\Ulid",
-            "\\Symfony\\Component\\Uid\\AbstractUid"
-        ]
-    },
-    {
-        "name": "\\Symfony\\Component\\Uid\\AbstractUid",
+        "name": "\\Shrikeh\\App\\Message\\Correlation",
         "size": 3000,
         "relations": []
     },
     {
-        "name": "\\Shrikeh\\App\\Uid\\Id\\Traits\\Ulid\\Rfc4122Uid",
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope\\StampHandler",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Messenger\\Stamp\\HandledStamp",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Messenger\\Stamp\\StampInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Messenger\\Envelope",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Generator",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage",
         "size": 3000,
         "relations": [
-            "\\Symfony\\Component\\Uid\\Ulid",
-            "\\Symfony\\Component\\Uid\\AbstractUid"
+            "\\Symfony\\Component\\Messenger\\Middleware\\MiddlewareInterface",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope",
+            "\\Psr\\Log\\LoggerInterface",
+            "\\Symfony\\Component\\Messenger\\Envelope",
+            "\\Symfony\\Component\\Messenger\\Middleware\\StackInterface"
         ]
     },
     {
-        "name": "\\Shrikeh\\App\\Bus\\Exception\\ErrorHandlingQuery",
+        "name": "\\Symfony\\Component\\Messenger\\Middleware\\MiddlewareInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Messenger\\Middleware\\StackInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Traits\\AssertResultCorrelation",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Message\\Result",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\BusMustReturnCorrelatedResult",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\CorrelatedResultWasUncorrelated",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\ResultCorrelationMismatch"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Message\\Result",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\BusMustReturnCorrelatedResult",
+        "size": 3000,
+        "relations": [
+            "\\RuntimeException",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException",
+            "\\Shrikeh\\App\\Message\\Result"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\CorrelatedResultWasUncorrelated",
+        "size": 3000,
+        "relations": [
+            "\\RuntimeException",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\ResultCorrelationMismatch",
+        "size": 3000,
+        "relations": [
+            "\\RuntimeException",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Traits\\AssertMessageCorrelation",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\CorrelatedMessageUncorrelated"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\CorrelatedMessageUncorrelated",
+        "size": 3000,
+        "relations": [
+            "\\InvalidArgumentException",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Traits\\CorrelationLog",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Message\\Correlated"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Message\\Correlated",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\CorrelationQueryBus",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Query\\QueryBus\\CorrelatingQueryBus",
+            "\\Shrikeh\\App\\Query\\QueryBus",
+            "\\Shrikeh\\App\\Log"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Query\\QueryBus\\CorrelatingQueryBus",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\App\\Query\\QueryBus",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException",
         "size": 3000,
         "relations": []
     },
@@ -323,12 +539,59 @@
         "relations": []
     },
     {
-        "name": "\\Shrikeh\\App\\Query\\QueryBus\\Exception\\QueryBusException",
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Decorator\\CorrelationCommandBus",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Command\\CommandBus\\CorrelatingCommandBus",
+            "\\Shrikeh\\App\\Command\\CommandBus",
+            "\\Shrikeh\\App\\Log"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Command\\CommandBus\\CorrelatingCommandBus",
         "size": 3000,
         "relations": []
     },
     {
-        "name": "\\Shrikeh\\App\\Bus\\Exception\\SymfonyMessageBusException",
+        "name": "\\Shrikeh\\App\\Command\\CommandBus",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Traits\\ResultAssertion",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Message",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\MessageBusReturnedNoResult"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\App\\Message",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\MessageBusReturnedNoResult",
+        "size": 3000,
+        "relations": [
+            "\\RuntimeException",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException",
+            "\\Shrikeh\\App\\Message"
+        ]
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\SymfonyQueryBus",
+        "size": 3000,
+        "relations": [
+            "\\Shrikeh\\App\\Query\\QueryBus",
+            "\\Symfony\\Component\\Messenger\\MessageBusInterface",
+            "\\Shrikeh\\App\\Message\\Result",
+            "\\Shrikeh\\App\\Message\\Query",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\ErrorHandlingQuery"
+        ]
+    },
+    {
+        "name": "\\Symfony\\Component\\Messenger\\MessageBusInterface",
         "size": 3000,
         "relations": []
     },
@@ -338,19 +601,26 @@
         "relations": []
     },
     {
-        "name": "\\Throwable",
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\ErrorHandlingQuery",
         "size": 3000,
-        "relations": []
+        "relations": [
+            "\\RuntimeException",
+            "\\Shrikeh\\App\\Query\\QueryBus\\Exception\\QueryBusException",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException",
+            "\\Shrikeh\\App\\Message\\Query",
+            "\\Throwable"
+        ]
     },
     {
-        "name": "\\Shrikeh\\App\\Bus\\Exception\\ErrorHandlingCommand",
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\SymfonyCommandBus",
         "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Command\\CommandBus\\Exception\\CommandBusException",
-        "size": 3000,
-        "relations": []
+        "relations": [
+            "\\Shrikeh\\App\\Command\\CommandBus",
+            "\\Symfony\\Component\\Messenger\\MessageBusInterface",
+            "\\Shrikeh\\App\\Message\\Result",
+            "\\Shrikeh\\App\\Message\\Command",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\ErrorHandlingCommand"
+        ]
     },
     {
         "name": "\\Shrikeh\\App\\Message\\Command",
@@ -358,94 +628,42 @@
         "relations": []
     },
     {
-        "name": "\\Shrikeh\\App\\Bus\\Exception\\QueryMustReturnAResult",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\LogicException",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Bus\\CorrelatingMessageBus",
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\ErrorHandlingCommand",
         "size": 3000,
         "relations": [
-            "\\Shrikeh\\App\\Bus\\MessageBus",
-            "\\Symfony\\Component\\Messenger\\MessageBusInterface",
-            "\\Shrikeh\\App\\Log",
-            "\\Shrikeh\\App\\Message",
-            "\\Shrikeh\\App\\Message\\Correlated"
-        ]
-    },
-    {
-        "name": "\\Shrikeh\\App\\Bus\\MessageBus",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Symfony\\Component\\Messenger\\MessageBusInterface",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Log",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Message",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Message\\Correlated",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Bus\\SymfonyQueryBus",
-        "size": 3000,
-        "relations": [
-            "\\Shrikeh\\App\\Query\\QueryBus",
-            "\\Shrikeh\\App\\Bus\\MessageBus",
-            "\\Shrikeh\\App\\Message\\Result",
-            "\\Shrikeh\\App\\Message\\Query",
-            "\\Shrikeh\\App\\Bus\\Exception\\ErrorHandlingQuery",
-            "\\Shrikeh\\App\\Bus\\Exception\\QueryMustReturnAResult"
-        ]
-    },
-    {
-        "name": "\\Shrikeh\\App\\Query\\QueryBus",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Message\\Result",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Bus\\SymfonyCommandBus",
-        "size": 3000,
-        "relations": [
-            "\\Shrikeh\\App\\Command\\CommandBus",
-            "\\Shrikeh\\App\\Bus\\MessageBus",
+            "\\RuntimeException",
+            "\\Shrikeh\\App\\Command\\CommandBus\\Exception\\CommandBusException",
+            "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException",
             "\\Shrikeh\\App\\Message\\Command",
-            "\\Shrikeh\\App\\Bus\\Exception\\ErrorHandlingCommand"
+            "\\Throwable"
         ]
     },
     {
-        "name": "\\Shrikeh\\App\\Command\\CommandBus",
+        "name": "\\Shrikeh\\App\\Command\\CommandBus\\Exception\\CommandBusException",
         "size": 3000,
         "relations": []
     },
     {
-        "name": "\\Shrikeh\\App\\Bundle\\App",
+        "name": "\\Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Throwable",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\App\\Query\\QueryBus\\Exception\\QueryBusException",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Shrikeh\\SymfonyApp\\Bundle\\App",
         "size": 3000,
         "relations": [
             "\\Symfony\\Component\\HttpKernel\\Bundle\\AbstractBundle",
-            "\\Shrikeh\\App\\Bundle\\DependencyInjection\\AppExtension"
+            "\\Shrikeh\\SymfonyApp\\Bundle\\DependencyInjection\\AppExtension"
         ]
     },
     {
@@ -454,7 +672,7 @@
         "relations": []
     },
     {
-        "name": "\\Shrikeh\\App\\Bundle\\DependencyInjection\\AppExtension",
+        "name": "\\Shrikeh\\SymfonyApp\\Bundle\\DependencyInjection\\AppExtension",
         "size": 3000,
         "relations": [
             "\\Symfony\\Component\\DependencyInjection\\Extension\\Extension",
@@ -482,61 +700,6 @@
         "name": "\\Symfony\\Component\\DependencyInjection\\Loader\\YamlFileLoader",
         "size": 3000,
         "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Logger\\Exception\\NoContextsPassed",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\InvalidArgumentException",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Log\\Exception\\LogException",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Logger\\Psr3AppLogger",
-        "size": 3000,
-        "relations": [
-            "\\Shrikeh\\App\\Log",
-            "\\Psr\\Log\\LoggerInterface",
-            "\\Shrikeh\\App\\Log\\Context",
-            "\\Shrikeh\\App\\Log\\Level"
-        ]
-    },
-    {
-        "name": "\\Psr\\Log\\LoggerInterface",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Log\\Context",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Log\\Level",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "\\Shrikeh\\App\\Logger\\Traits\\LevelLogger",
-        "size": 3000,
-        "relations": [
-            "\\Shrikeh\\App\\Log\\Level"
-        ]
-    },
-    {
-        "name": "\\Shrikeh\\App\\Logger\\Traits\\ContextualLogger",
-        "size": 3000,
-        "relations": [
-            "\\Shrikeh\\App\\Log\\Context",
-            "\\Shrikeh\\App\\Logger\\Exception\\NoContextsPassed"
-        ]
     }
 ];
 

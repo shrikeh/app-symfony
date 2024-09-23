@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\SymfonyApp\Uid\Id\Ulid;
+namespace Shrikeh\SymfonyApp\Correlation\Id;
 
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -15,6 +15,7 @@ final readonly class CorrelationUlid implements CorrelationId
 {
     use BinaryUlid;
     use Rfc4122Uid;
+
     public static function init(DateTimeInterface $dateTime = new DateTimeImmutable()): self
     {
         return self::fromString(Ulid::generate($dateTime));
@@ -27,7 +28,6 @@ final readonly class CorrelationUlid implements CorrelationId
 
     private function __construct(public Ulid $uid)
     {
-
     }
 
     public function getDateTime(): DateTimeImmutable

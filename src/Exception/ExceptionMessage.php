@@ -23,7 +23,7 @@ enum ExceptionMessage: string implements AppExceptionMessage
     case ERROR_HANDLING_COMMAND = 'Error handling command %s: %s';
     case ERROR_HANDLING_QUERY = 'Error handling query %s: %s';
 
-    case QUERY_NO_RESULT = 'Query %s failed to return a valid result';
+    case MESSAGE_NO_RESULT = 'Message %s failed to return a valid result';
 
     case RESULT_NOT_CORRELATED = <<<'EOF'
 Inner bus of type %s is expected to return a Correlated Result, type %s returned.

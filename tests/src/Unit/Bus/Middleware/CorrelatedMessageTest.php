@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Bus\Middleware;
 
-use PhpParser\Node\Arg;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LoggerInterface;
@@ -15,9 +15,8 @@ use Shrikeh\App\Message\Correlation\Traits\WithCorrelation;
 use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
 use Shrikeh\SymfonyApp\Bus\Middleware\CorrelatedMessage;
-use PHPUnit\Framework\TestCase;
 use Shrikeh\SymfonyApp\Bus\Middleware\CorrelatedMessage\HandledEnvelope;
-use Shrikeh\SymfonyApp\Uid\Id\Ulid\CorrelationUlid;
+use Shrikeh\SymfonyApp\Correlation\Id\CorrelationUlid;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\StackInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;

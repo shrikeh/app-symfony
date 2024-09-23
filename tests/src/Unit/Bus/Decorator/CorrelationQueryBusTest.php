@@ -15,20 +15,20 @@ namespace Shrikeh\SymfonyApp\Bus\Decorator;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Shrikeh\App\Message\Correlation\Traits\WithCorrelation;
-use Shrikeh\App\Query\QueryBus;
 use Shrikeh\App\Log;
-use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Correlated;
 use Shrikeh\App\Message\Correlation;
+use Shrikeh\App\Message\Correlation\Traits\WithCorrelation;
+use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
+use Shrikeh\App\Query\QueryBus;
 use Shrikeh\SymfonyApp\Bus\BusContext;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\BusMustReturnCorrelatedResult;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedMessageUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedResultWasUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\ResultCorrelationMismatch;
+use Shrikeh\SymfonyApp\Correlation\Id\CorrelationUlid;
 use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
-use Shrikeh\SymfonyApp\Uid\Id\Ulid\CorrelationUlid;
 
 /**
  * @author Barney Hanlon <symfony@shrikeh.net>

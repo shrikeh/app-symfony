@@ -20,5 +20,4 @@ use Shrikeh\SymfonyApp\Bus\Exception\SymfonyMessageBusException;
  */
 interface DecoratorException extends SymfonyMessageBusException
 {
-
 }

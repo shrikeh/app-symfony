@@ -14,7 +14,11 @@ declare(strict_types=1);
 namespace Shrikeh\SymfonyApp\Bus\Middleware\CorrelatedMessage;
 
 use Generator;
+use Shrikeh\App\Message;
+use Shrikeh\App\Message\Correlated;
 use Shrikeh\App\Message\Correlation;
+use Shrikeh\App\Message\Result;
+use Shrikeh\SymfonyApp\Bus\Middleware\CorrelatedMessage\HandledEnvelope\StampHandler;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Messenger\Stamp\StampInterface;
@@ -26,31 +30,25 @@ final readonly class HandledEnvelope
 {
     public function update(Envelope $envelope, HandledStamp $handledStamp): Envelope
     {
-        $stamps = array_map(
-            static function (StampInterface $stamp) use ($envelope, $handledStamp): StampInterface {
-                if ($stamp === $handledStamp) {
-                    /** @var Correlation $correlation */
-                    $correlation = $envelope->getMessage()->correlated();
-                    $stamp = new HandledStamp(
-                        $handledStamp->getResult()->withCorrelation($correlation->update()),
-                        $handledStamp->getHandlerName(),
-                    );
-                }
+        /** @var Message&Correlated $message */
+        $message = $envelope->getMessage();
 
-                return $stamp;
-            },
+        /** @var array<array-key, StampInterface> $stamps */
+        $stamps = array_map(
+            new StampHandler($message->correlated(), $handledStamp),
             iterator_to_array($this->stamps($envelope->all()))
         );
 
-        return new Envelope($envelope->getMessage(), $stamps);
+        return new Envelope($message, $stamps);
     }
 
     /**
-     * @param iterable<array<StampInterface>|StampInterface> $stamps
+     * @param array<array-key, mixed> $stamps
      * @return Generator<StampInterface>
      */
     private function stamps(iterable $stamps): Generator
     {
+        /** @var array<StampInterface>|StampInterface $stamp */
         foreach ($stamps as $stamp) {
             if (is_array($stamp)) {
                 yield from $this->stamps($stamp);

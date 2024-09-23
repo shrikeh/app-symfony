@@ -7,12 +7,16 @@ namespace Tests\Unit\Bus;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Shrikeh\SymfonyApp\Bus\Exception\ErrorHandlingQuery;
+use Shrikeh\SymfonyApp\Bus\Exception\MessageBusReturnedNoResult;
 use Shrikeh\SymfonyApp\Bus\Exception\QueryMustReturnAResult;
 use Shrikeh\SymfonyApp\Bus\MessageBus;
 use Shrikeh\SymfonyApp\Bus\SymfonyQueryBus;
 use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
+use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\LogicException;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 final class SymfonyQueryBusTest extends TestCase
 {
@@ -23,8 +27,12 @@ final class SymfonyQueryBusTest extends TestCase
         $query = $this->prophesize(Query::class)->reveal();
         $result = $this->prophesize(Result::class)->reveal();
 
-        $messageBus = $this->prophesize(MessageBus::class);
-        $messageBus->message($query)->willReturn($result);
+        $messageBus = $this->prophesize(MessageBusInterface::class);
+        $messageBus->dispatch($query)->willReturn(
+            new Envelope($query, [
+                new HandledStamp($result, 'test')
+            ])
+        );
 
         $queryBus = new SymfonyQueryBus($messageBus->reveal());
 
@@ -37,10 +45,10 @@ final class SymfonyQueryBusTest extends TestCase
     public function testItThrowsAnExceptionIfTheMessageBusThrowsAnException(): void
     {
         $query = $this->prophesize(Query::class)->reveal();
-        $messageBus = $this->prophesize(MessageBus::class);
+        $messageBus = $this->prophesize(MessageBusInterface::class);
 
         $exception = new LogicException('foo');
-        $messageBus->message($query)->willThrow($exception);
+        $messageBus->dispatch($query)->willThrow($exception);
         $this->expectExceptionObject(new ErrorHandlingQuery($query, $exception));
         $this->expectExceptionMessage(ErrorHandlingQuery::MSG->message(
             get_class($query),
@@ -54,13 +62,20 @@ final class SymfonyQueryBusTest extends TestCase
     public function testItThrowsAnExceptionIfThereIsNoResult(): void
     {
         $query = $this->prophesize(Query::class)->reveal();
-        $messageBus = $this->prophesize(MessageBus::class);
-        $messageBus->message($query)->willReturn(null);
+        $messageBus = $this->prophesize(MessageBusInterface::class);
+        $messageBus->dispatch($query)->willReturn(
+            new Envelope($query, [
+                new HandledStamp(null, 'test')
+            ])
+        );
 
         $queryBus = new SymfonyQueryBus($messageBus->reveal());
 
-        $this->expectException(QueryMustReturnAResult::class);
-        $this->expectExceptionMessage(QueryMustReturnAResult::MSG->message(get_class($query)));
+        $this->expectException(MessageBusReturnedNoResult::class);
+        $this->expectExceptionMessage(MessageBusReturnedNoResult::MSG->message(
+            get_class($query),
+            (string) null,
+        ));
 
         $queryBus->handle($query);
     }

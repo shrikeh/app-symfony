@@ -32,10 +32,8 @@ final readonly class CorrelationCommandBus implements CorrelatingCommandBus
     use AssertResultCorrelation;
     use CorrelationLog;
 
-    public function __construct(CommandBus $bus, Log $log)
+    public function __construct(private CommandBus $bus, private Log $log)
     {
-        $this->bus = $bus;
-        $this->log = $log;
     }
     /**
      * Simple decorator that hardens the inner Command Bus by using the more strict interface definition.
@@ -45,10 +43,15 @@ final readonly class CorrelationCommandBus implements CorrelatingCommandBus
     {
         $this->assertMessage($command);
         $this->correlationStart($command);
-        $result = $this->bus->handle($command);
+        $result = $this->bus()->handle($command);
         $this->assertResult($command, $result);
         $this->correlationEnd($command);
         /** @var Result&Correlated*/
         return $result;
+    }
+
+    private function bus(): CommandBus
+    {
+        return $this->bus;
     }
 }

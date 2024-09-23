@@ -11,6 +11,9 @@ use Shrikeh\App\Log\Level;
 use Shrikeh\App\Log\Level\Psr3;
 use Stringable;
 
+/**
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ */
 final readonly class Psr3AppLogger implements Log
 {
     use Traits\ContextualLogger;

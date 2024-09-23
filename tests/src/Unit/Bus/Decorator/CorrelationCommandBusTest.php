@@ -21,16 +21,14 @@ use Shrikeh\App\Message\Command;
 use Shrikeh\App\Message\Correlated;
 use Shrikeh\App\Message\Correlation;
 use Shrikeh\App\Message\Correlation\Traits\WithCorrelation;
-use Shrikeh\App\Message\Query;
 use Shrikeh\App\Message\Result;
-use Shrikeh\App\Query\QueryBus;
 use Shrikeh\SymfonyApp\Bus\BusContext;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\BusMustReturnCorrelatedResult;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedMessageUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedResultWasUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\ResultCorrelationMismatch;
+use Shrikeh\SymfonyApp\Correlation\Id\CorrelationUlid;
 use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
-use Shrikeh\SymfonyApp\Uid\Id\Ulid\CorrelationUlid;
 
 /**
  * @author Barney Hanlon <symfony@shrikeh.net>
@@ -145,7 +143,7 @@ final class CorrelationCommandBusTest extends TestCase
         $decorator->handle($command);
     }
 
-    public function testItThrowsAnExceptionIfTheResuCorrelationDoesNotMatchTheCommandCorrelation(): void
+    public function testItThrowsAnExceptionIfTheResultCorrelationDoesNotMatchTheCommandCorrelation(): void
     {
         $commandCorrelation = new Correlation(CorrelationUlid::init());
         $command = $this->correlatedCommand()->withCorrelation($commandCorrelation);

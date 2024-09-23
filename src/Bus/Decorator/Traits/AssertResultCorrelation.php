@@ -27,17 +27,14 @@ use Shrikeh\SymfonyApp\Bus\Decorator\Exception\ResultCorrelationMismatch;
  */
 trait AssertResultCorrelation
 {
-    private readonly CommandBus|QueryBus $bus;
-
     /**
      * @phpstan-assert Result&Correlated $result
      */
     private function assertResult(Correlated&Message $message, Result $result): void
     {
         if (!$result instanceof Correlated) {
-            throw new BusMustReturnCorrelatedResult($this->bus, $result);
+            throw new BusMustReturnCorrelatedResult($this->bus(), $result);
         }
-        /** @var Result&Correlated $result */
         if (!$result->hasCorrelation()) {
             throw new CorrelatedResultWasUncorrelated($result);
         }
@@ -46,4 +43,6 @@ trait AssertResultCorrelation
             throw new ResultCorrelationMismatch($message, $result);
         }
     }
+
+    abstract private function bus(): CommandBus | QueryBus;
 }

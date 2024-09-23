@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Uid\Id\Ulid;
+namespace Tests\Unit\Correlation\Id;
 
-use Shrikeh\SymfonyApp\Uid\Id\Ulid\CorrelationUlid;
 use PHPUnit\Framework\TestCase;
+use Shrikeh\SymfonyApp\Correlation\Id\CorrelationUlid;
 use Symfony\Component\Uid\Ulid;
 
 final class CorrelationUlidTest extends TestCase

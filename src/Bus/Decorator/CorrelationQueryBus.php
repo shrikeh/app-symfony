@@ -36,10 +36,8 @@ final readonly class CorrelationQueryBus implements CorrelatingQueryBus
     use AssertResultCorrelation;
     use CorrelationLog;
 
-    public function __construct(QueryBus $bus, Log $log)
+    public function __construct(private QueryBus $bus, private Log $log)
     {
-        $this->bus = $bus;
-        $this->log = $log;
     }
 
     /**
@@ -50,11 +48,16 @@ final readonly class CorrelationQueryBus implements CorrelatingQueryBus
     {
         $this->assertMessage($query);
         $this->correlationStart($query);
-        $result = $this->bus->handle($query);
+        $result = $this->bus()->handle($query);
         $this->assertResult($query, $result);
         $this->correlationEnd($query);
 
         /** @var Result&Correlated*/
         return $result;
+    }
+
+    private function bus(): QueryBus
+    {
+        return $this->bus;
     }
 }

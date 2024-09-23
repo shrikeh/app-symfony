@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2024-05-27 19:04:36        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2024-09-23 13:56:59        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -93,7 +93,7 @@
                             <path d="M0 0h24v24H0z" fill="none">
                             <path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z">
                         </svg>
-                        Violations (2)
+                        Violations (5)
                     </a>
                 </li>
                                     <li>
@@ -262,7 +262,82 @@
 
     var relations = [
     {
-        "name": "Shrikeh\\App\\Uid\\Id\\Ulid",
+        "name": "Shrikeh\\SymfonyApp\\Logger\\Traits",
+        "size": 3000,
+        "relations": [
+            "Shrikeh\\App\\Log",
+            "Shrikeh\\SymfonyApp\\Logger\\Exception"
+        ]
+    },
+    {
+        "name": "Shrikeh\\App\\Log",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Logger\\Exception",
+        "size": 3000,
+        "relations": [
+            "global",
+            "Shrikeh\\App\\Log\\Exception"
+        ]
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Logger",
+        "size": 3000,
+        "relations": [
+            "Shrikeh\\App",
+            "Psr\\Log",
+            "Shrikeh\\App\\Log"
+        ]
+    },
+    {
+        "name": "Shrikeh\\App",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Psr\\Log",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "global",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\App\\Log\\Exception",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Uid\\Id\\Traits\\Ulid",
+        "size": 3000,
+        "relations": [
+            "Symfony\\Component\\Uid"
+        ]
+    },
+    {
+        "name": "Symfony\\Component\\Uid",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Correlation",
+        "size": 3000,
+        "relations": [
+            "Shrikeh\\App\\Message",
+            "global"
+        ]
+    },
+    {
+        "name": "Shrikeh\\App\\Message",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Correlation\\Id",
         "size": 3000,
         "relations": [
             "Shrikeh\\App\\Message\\Correlation",
@@ -276,66 +351,88 @@
         "relations": []
     },
     {
-        "name": "global",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Symfony\\Component\\Uid",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Uid\\Id\\Traits\\Ulid",
+        "name": "Shrikeh\\SymfonyApp\\Correlation\\CorrelationFactory",
         "size": 3000,
         "relations": [
-            "Symfony\\Component\\Uid"
+            "Shrikeh\\SymfonyApp\\Correlation",
+            "Shrikeh\\App\\Message",
+            "global",
+            "Shrikeh\\SymfonyApp\\Correlation\\Id"
         ]
     },
     {
-        "name": "Shrikeh\\App\\Bus\\Exception",
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope",
+        "size": 3000,
+        "relations": [
+            "Shrikeh\\App\\Message",
+            "Symfony\\Component\\Messenger\\Stamp"
+        ]
+    },
+    {
+        "name": "Symfony\\Component\\Messenger\\Stamp",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage",
+        "size": 3000,
+        "relations": [
+            "Symfony\\Component\\Messenger",
+            "Symfony\\Component\\Messenger\\Stamp",
+            "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope",
+            "global"
+        ]
+    },
+    {
+        "name": "Symfony\\Component\\Messenger",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Middleware",
+        "size": 3000,
+        "relations": [
+            "Symfony\\Component\\Messenger\\Middleware",
+            "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage",
+            "Psr\\Log",
+            "Symfony\\Component\\Messenger"
+        ]
+    },
+    {
+        "name": "Symfony\\Component\\Messenger\\Middleware",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Traits",
+        "size": 3000,
+        "relations": [
+            "Shrikeh\\App\\Message",
+            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception"
+        ]
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception",
         "size": 3000,
         "relations": [
             "global",
-            "Shrikeh\\App\\Query\\QueryBus\\Exception",
-            "Shrikeh\\App\\Message",
-            "Shrikeh\\App\\Command\\CommandBus\\Exception"
+            "Shrikeh\\SymfonyApp\\Bus\\Exception",
+            "Shrikeh\\App\\Message"
         ]
     },
     {
-        "name": "Shrikeh\\App\\Query\\QueryBus\\Exception",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Message",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Command\\CommandBus\\Exception",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Bus",
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Decorator",
         "size": 3000,
         "relations": [
-            "Shrikeh\\App",
-            "Symfony\\Component\\Messenger",
-            "Shrikeh\\App\\Message",
+            "Shrikeh\\App\\Query\\QueryBus",
             "Shrikeh\\App\\Query",
-            "Shrikeh\\App\\Bus\\Exception",
+            "Shrikeh\\App",
+            "Shrikeh\\App\\Command\\CommandBus",
             "Shrikeh\\App\\Command"
         ]
     },
     {
-        "name": "Shrikeh\\App",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Symfony\\Component\\Messenger",
+        "name": "Shrikeh\\App\\Query\\QueryBus",
         "size": 3000,
         "relations": []
     },
@@ -345,16 +442,61 @@
         "relations": []
     },
     {
+        "name": "Shrikeh\\App\\Command\\CommandBus",
+        "size": 3000,
+        "relations": []
+    },
+    {
         "name": "Shrikeh\\App\\Command",
         "size": 3000,
         "relations": []
     },
     {
-        "name": "Shrikeh\\App\\Bundle",
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Exception",
+        "size": 3000,
+        "relations": [
+            "global",
+            "Shrikeh\\App\\Command\\CommandBus\\Exception",
+            "Shrikeh\\App\\Message",
+            "Shrikeh\\App\\Query\\QueryBus\\Exception",
+            "Shrikeh\\App"
+        ]
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Bus\\Traits",
+        "size": 3000,
+        "relations": [
+            "Shrikeh\\App",
+            "Shrikeh\\SymfonyApp\\Bus\\Exception"
+        ]
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Bus",
+        "size": 3000,
+        "relations": [
+            "Shrikeh\\App\\Query",
+            "Symfony\\Component\\Messenger",
+            "Shrikeh\\App\\Message",
+            "Shrikeh\\SymfonyApp\\Bus\\Exception",
+            "Shrikeh\\App\\Command"
+        ]
+    },
+    {
+        "name": "Shrikeh\\App\\Command\\CommandBus\\Exception",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\App\\Query\\QueryBus\\Exception",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "Shrikeh\\SymfonyApp\\Bundle",
         "size": 3000,
         "relations": [
             "Symfony\\Component\\HttpKernel\\Bundle",
-            "Shrikeh\\App\\Bundle\\DependencyInjection"
+            "Shrikeh\\SymfonyApp\\Bundle\\DependencyInjection"
         ]
     },
     {
@@ -363,7 +505,7 @@
         "relations": []
     },
     {
-        "name": "Shrikeh\\App\\Bundle\\DependencyInjection",
+        "name": "Shrikeh\\SymfonyApp\\Bundle\\DependencyInjection",
         "size": 3000,
         "relations": [
             "Symfony\\Component\\DependencyInjection\\Extension",
@@ -391,46 +533,6 @@
         "name": "Symfony\\Component\\DependencyInjection\\Loader",
         "size": 3000,
         "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Logger\\Exception",
-        "size": 3000,
-        "relations": [
-            "global",
-            "Shrikeh\\App\\Log\\Exception"
-        ]
-    },
-    {
-        "name": "Shrikeh\\App\\Log\\Exception",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Logger",
-        "size": 3000,
-        "relations": [
-            "Shrikeh\\App",
-            "Psr\\Log",
-            "Shrikeh\\App\\Log"
-        ]
-    },
-    {
-        "name": "Psr\\Log",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Log",
-        "size": 3000,
-        "relations": []
-    },
-    {
-        "name": "Shrikeh\\App\\Logger\\Traits",
-        "size": 3000,
-        "relations": [
-            "Shrikeh\\App\\Log",
-            "Shrikeh\\App\\Logger\\Exception"
-        ]
     }
 ];
 

@@ -9,7 +9,6 @@ use Symfony\Component\Uid\Ulid;
 
 trait Rfc4122Uid
 {
-
     public static function fromRfc4122(string $uid): self
     {
         return new self(Ulid::fromRfc4122($uid));

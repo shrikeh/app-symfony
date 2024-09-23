@@ -8,5 +8,4 @@ use Throwable;
 
 interface SymfonyMessageBusException extends Throwable
 {
-
 }

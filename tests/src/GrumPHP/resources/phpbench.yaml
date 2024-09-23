@@ -1,0 +1,17 @@
+---
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  Tests\GrumPHP\Tasks\:
+    resource: '../Tasks'
+    
+  Tests\GrumPHP\Tasks\PhpBenchTask:
+    class: Tests\GrumPHP\Tasks\PhpBenchTask
+    arguments:
+      - '@process_builder'
+      - '@formatter.raw_process'
+    tags:
+      - { name: grumphp.task, task: phpbench }

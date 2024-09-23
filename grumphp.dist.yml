@@ -1,4 +1,8 @@
 grumphp:
+  extensions:
+    - Tests\GrumPHP\Extension\PhpBench
+  parallel:
+    enabled: false
   tasks:
     composer:
       file: ./composer.json
@@ -7,21 +11,22 @@ grumphp:
       no_check_publish: false
       no_local_repository: false
       with_dependencies: false
-      strict: false
+      strict: true
+    composer_normalize:
+      indent_size: 2
+      indent_style: space
+      no_check_lock: false
+      no_update_lock: false
+      verbose: false
     phpcs:
-      standard: []
+      standard: 
+        - Shrikeh
       severity: ~
       error_severity: ~
       warning_severity: ~
       tab_width: ~
       report: full
-      report_width: ~
-      whitelist_patterns: []
-      encoding: ~
-      ignore_patterns: []
-      sniffs: []
       triggered_by: [php]
-      exclude: []
       show_sniffs_error_path: true
     infection:
       threads: ~
@@ -30,8 +35,10 @@ grumphp:
       show_mutations: true
       verbose: true
       configuration: ~
-      min_msi: ~
-      min_covered_msi: ~
+      min_msi: 80
+      min_covered_msi: 80
       mutators: []
       ignore_patterns: []
       triggered_by: [php]
+    phpbench: ~
+  

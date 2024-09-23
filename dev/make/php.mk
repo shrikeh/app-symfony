@@ -37,6 +37,10 @@ psalm:
 	$(info [+] Make: Running composer psalm...)
 	$(MAKE) .composer-psalm;
 
+phpstan:
+	$(info [+] Make: Running composer phpstan...)
+	$(MAKE) .composer-phpstan;
+
 infection:
 	$(info [+] Make: Running composer infection...)
 	$(MAKE) .composer-infection;
