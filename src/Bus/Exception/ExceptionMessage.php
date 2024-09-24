@@ -11,15 +11,17 @@
 
 declare(strict_types=1);
 
-namespace Shrikeh\SymfonyApp\Exception;
+namespace Shrikeh\SymfonyApp\Bus\Exception;
 
 use Shrikeh\App\Exception\AppExceptionMessage;
+use Shrikeh\SymfonyApp\Exception\Traits\Message;
 
 /**
  * @author Barney Hanlon <symfony@shrikeh.net>
  */
 enum ExceptionMessage: string implements AppExceptionMessage
 {
+    use Message;
     case ERROR_HANDLING_COMMAND = 'Error handling command %s: %s';
     case ERROR_HANDLING_QUERY = 'Error handling query %s: %s';
 
@@ -33,9 +35,4 @@ EOF;
     case CORRELATION_MISMATCH = 'Correlation mismatch: CQRS correlation %s, but Result correlation %s';
 
     case CORRELATED_MESSAGE_UNCORRELATED = 'Message of type %s was expected to have a correlation but it does not.';
-
-    public function message(string ...$args): string
-    {
-        return sprintf($this->value, ...$args);
-    }
 }

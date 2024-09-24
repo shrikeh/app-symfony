@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Shrikeh\SymfonyApp\Bus\Exception;
 
-use Shrikeh\App\Message\Command;
-use Shrikeh\App\Command\CommandBus\Exception\CommandBusException;
 use RuntimeException;
-use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
+use Shrikeh\App\Command\CommandBus\Exception\CommandBusException;
+use Shrikeh\App\Message\Command;
 use Throwable;
 
 final class ErrorHandlingCommand extends RuntimeException implements CommandBusException, SymfonyMessageBusException

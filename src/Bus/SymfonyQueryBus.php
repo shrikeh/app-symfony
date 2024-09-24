@@ -23,11 +23,11 @@ final class SymfonyQueryBus implements QueryBus
     }
 
     /**
-     * @param MessageBusInterface $messageBus
-     * @phpstan-ignore property.onlyWritten
+     * @param MessageBusInterface $queryBus
      */
-    public function __construct(private MessageBusInterface $messageBus)
+    public function __construct(MessageBusInterface $queryBus)
     {
+        $this->messageBus = $queryBus;
     }
 
     /**

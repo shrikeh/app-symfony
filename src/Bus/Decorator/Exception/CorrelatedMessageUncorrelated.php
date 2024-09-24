@@ -16,7 +16,7 @@ namespace Shrikeh\SymfonyApp\Bus\Decorator\Exception;
 use InvalidArgumentException;
 use Shrikeh\App\Message;
 use Shrikeh\App\Message\Correlated;
-use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
+use Shrikeh\SymfonyApp\Bus\Exception\ExceptionMessage;
 
 /**
  * @author Barney Hanlon <symfony@shrikeh.net>

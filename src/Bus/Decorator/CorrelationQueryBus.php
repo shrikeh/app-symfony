@@ -41,7 +41,7 @@ final readonly class CorrelationQueryBus implements CorrelatingQueryBus
     }
 
     /**
-     * Simple decorator that hardens the inner Query Bus by using the more strict interface definition.
+     * Simple decorator that hardens the inner Query Cqrs by using the more strict interface definition.
      * @inheritDoc
      */
     public function handle(Correlated&Query $query): Result&Correlated

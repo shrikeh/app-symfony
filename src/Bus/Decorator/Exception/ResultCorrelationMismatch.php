@@ -17,7 +17,7 @@ use RuntimeException;
 use Shrikeh\App\Message;
 use Shrikeh\App\Message\Correlated;
 use Shrikeh\App\Message\Result;
-use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
+use Shrikeh\SymfonyApp\Bus\Exception\ExceptionMessage;
 
 /**
  * @author Barney Hanlon <symfony@shrikeh.net>

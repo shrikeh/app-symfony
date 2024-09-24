@@ -21,11 +21,11 @@ final class SymfonyCommandBus implements CommandBus
     }
 
     /**
-     * @param MessageBusInterface $messageBus
-     * @phpstan-ignore property.onlyWritten
+     * @param MessageBusInterface $commandBus
      */
-    public function __construct(private MessageBusInterface $messageBus)
+    public function __construct(MessageBusInterface $commandBus)
     {
+        $this->messageBus = $commandBus;
     }
 
     public function handle(Command $command): Result

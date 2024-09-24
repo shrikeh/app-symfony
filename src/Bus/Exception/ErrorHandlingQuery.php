@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Shrikeh\SymfonyApp\Bus\Exception;
 
+use RuntimeException;
 use Shrikeh\App\Message\Query;
 use Shrikeh\App\Query\QueryBus\Exception\QueryBusException;
-use RuntimeException;
-use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
 use Throwable;
 
 final class ErrorHandlingQuery extends RuntimeException implements QueryBusException, SymfonyMessageBusException

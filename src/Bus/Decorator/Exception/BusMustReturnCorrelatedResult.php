@@ -15,9 +15,9 @@ namespace Shrikeh\SymfonyApp\Bus\Decorator\Exception;
 
 use RuntimeException;
 use Shrikeh\App\Command\CommandBus;
-use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
-use Shrikeh\App\Query\QueryBus;
 use Shrikeh\App\Message\Result;
+use Shrikeh\App\Query\QueryBus;
+use Shrikeh\SymfonyApp\Bus\Exception\ExceptionMessage;
 
 /**
  * @author Barney Hanlon <symfony@shrikeh.net>

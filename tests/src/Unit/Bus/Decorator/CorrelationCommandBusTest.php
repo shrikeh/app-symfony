@@ -27,8 +27,8 @@ use Shrikeh\SymfonyApp\Bus\Decorator\Exception\BusMustReturnCorrelatedResult;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedMessageUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\CorrelatedResultWasUncorrelated;
 use Shrikeh\SymfonyApp\Bus\Decorator\Exception\ResultCorrelationMismatch;
+use Shrikeh\SymfonyApp\Bus\Exception\ExceptionMessage;
 use Shrikeh\SymfonyApp\Correlation\Id\CorrelationUlid;
-use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
 
 /**
  * @author Barney Hanlon <symfony@shrikeh.net>

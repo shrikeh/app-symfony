@@ -36,7 +36,7 @@ final readonly class CorrelationCommandBus implements CorrelatingCommandBus
     {
     }
     /**
-     * Simple decorator that hardens the inner Command Bus by using the more strict interface definition.
+     * Simple decorator that hardens the inner Command Cqrs by using the more strict interface definition.
      * @inheritDoc
      */
     public function handle(Correlated&Command $command): Result&Correlated

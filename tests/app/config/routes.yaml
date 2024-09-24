@@ -1,0 +1,7 @@
+---
+hello:
+  path: /
+  controller: Shrikeh\HelloWorld\Http\Greetings
+  methods:
+    - GET
+    - HEAD

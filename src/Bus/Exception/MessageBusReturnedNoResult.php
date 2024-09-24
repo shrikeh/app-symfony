@@ -6,7 +6,6 @@ namespace Shrikeh\SymfonyApp\Bus\Exception;
 
 use RuntimeException;
 use Shrikeh\App\Message;
-use Shrikeh\SymfonyApp\Exception\ExceptionMessage;
 
 final class MessageBusReturnedNoResult extends RuntimeException implements SymfonyMessageBusException
 {

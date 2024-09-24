@@ -1,0 +1,39 @@
+framework:
+    messenger:
+      default_bus: query.bus
+      buses:
+        command.bus:
+          default_middleware: true
+          middleware:
+            - 'add_bus_name_stamp_middleware': ['messenger.command.bus']
+            - failed_message_processing_middleware
+            - send_message
+            - 'command_bus.middleware.handle_message'
+            - Shrikeh\SymfonyApp\Bus\Middleware\CorrelatedMessage
+        query.bus:
+          default_middleware: true
+          middleware:
+            - 'add_bus_name_stamp_middleware': ['messenger.query.bus']
+            - failed_message_processing_middleware
+            - send_message
+            - 'query_bus.middleware.handle_message'
+            - Shrikeh\SymfonyApp\Bus\Middleware\CorrelatedMessage
+
+# when@test:
+#    framework:
+#        messenger:
+#            transports:
+#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
+#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+#                async: 'in-memory://'
+
+services:
+  'query_bus.middleware.handle_message':
+    class: Symfony\Component\Messenger\Middleware\HandleMessageMiddleware
+    arguments:
+      - '@query.bus.messenger.handlers_locator'
+  'command_bus.middleware.handle_message':
+    class: Symfony\Component\Messenger\Middleware\HandleMessageMiddleware
+    arguments:
+      - '@command.bus.messenger.handlers_locator'
+      
