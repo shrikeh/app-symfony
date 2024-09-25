@@ -7,22 +7,31 @@ services:
 
   Shrikeh\SymfonyApp\:
     resource: '../src/'
-    exclude:
-      - '../src/Uid/Id'
     
-  Shrikeh\SymfonyApp\Bus\SymfonyCommandBus: ~
-  Shrikeh\SymfonyApp\Bus\SymfonyQueryBus: ~
+  Shrikeh\App\Command\CommandBus\CorrelatingCommandBus: '@Shrikeh\SymfonyApp\Bus\Decorator\CorrelationCommandBus'
+  Shrikeh\App\Query\QueryBus\CorrelatingQueryBus: '@Shrikeh\SymfonyApp\Bus\Decorator\CorrelationQueryBus'  
+  
+  Shrikeh\App\Query\QueryBus: '@Shrikeh\SymfonyApp\Bus\SymfonyQueryBus'
+  Shrikeh\App\Command\CommandBus: '@Shrikeh\SymfonyApp\Bus\SymfonyCommandBus'
 
   Shrikeh\SymfonyApp\Logger\Psr3AppLogger: ~
-  Shrikeh\SymfonyApp\Log: '@Shrikeh\App\Logger\Psr3AppLogger'
-
-  Shrikeh\SymfonyApp\Command\CommandBus: '@Shrikeh\App\Bus\SymfonyCommandBus'
-  Shrikeh\SymfonyApp\Command\QueryBus: '@Shrikeh\App\Bus\SymfonyQueryBus'
+  Shrikeh\App\Log: '@Shrikeh\SymfonyApp\Logger\Psr3AppLogger'
 
   _instanceof:
-    Shrikeh\SymfonyApp\Query\QueryHandler:
+    Shrikeh\App\Query\QueryHandler:
       tags:
-        - { name: messenger.message_handler, bus: 'query.bus' }
-    Shrikeh\SymfonyApp\Command\CommandHandler:
+        - { name: 'messenger.message_handler', bus: 'query.bus' }
+    Shrikeh\App\Command\CommandHandler:
       tags:
-        - { name: messenger.message_handler, bus: 'command.bus' }
+        - { name: 'messenger.message_handler', bus: 'command.bus' }
+
+    Shrikeh\SymfonyApp\Http\Action:
+      tags:
+        - { name: 'controller.service_arguments' }
+          
+  Shrikeh\SymfonyApp\Http\Formatter\Json\Encoder: '@Shrikeh\HelloWorld\Http\Formatter\Json\Ergebnis'
+
+  Shrikeh\SymfonyApp\Console\Action\Cqrs\CommandFactory\Decorator\CorrelatedCommand:
+    autowire: false
+  Shrikeh\SymfonyApp\Http\Action\Cqrs\QueryFactory\Decorator\CorrelatedQuery:
+    autowire: false
