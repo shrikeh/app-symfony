@@ -30,7 +30,7 @@ final class InputConfiguratorTest extends TestCase
 
         $inputConfigurator = new InputConfigurator($input1, $input2);
 
-        $inputConfigurator->configure($configurableAction->reveal());
+        $inputConfigurator($configurableAction->reveal());
 
         $configurableAction->setDefinition($inputDefinition)->shouldHaveBeenCalledOnce();
 

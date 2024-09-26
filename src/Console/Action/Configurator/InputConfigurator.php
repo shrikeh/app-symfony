@@ -20,7 +20,7 @@ final readonly class InputConfigurator implements Configurator
         $this->inputs = new Set($inputs);
     }
 
-    public function configure(ConfigurableAction $action): ConfigurableAction
+    public function __invoke(ConfigurableAction $action): ConfigurableAction
     {
         return $action->setDefinition($this->addInputs($action->getDefinition()));
     }

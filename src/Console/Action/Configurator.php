@@ -8,5 +8,5 @@ use Shrikeh\SymfonyApp\Console\Action;
 
 interface Configurator
 {
-    public function configure(ConfigurableAction $action): ConfigurableAction;
+    public function __invoke(ConfigurableAction $action): ConfigurableAction;
 }
