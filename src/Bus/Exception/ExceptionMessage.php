@@ -22,6 +22,7 @@ use Shrikeh\SymfonyApp\Exception\Traits\Message;
 enum ExceptionMessage: string implements AppExceptionMessage
 {
     use Message;
+
     case ERROR_HANDLING_COMMAND = 'Error handling command %s: %s';
     case ERROR_HANDLING_QUERY = 'Error handling query %s: %s';
 

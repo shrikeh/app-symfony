@@ -8,5 +8,4 @@ use Throwable;
 
 interface HttpException extends Throwable
 {
-
 }

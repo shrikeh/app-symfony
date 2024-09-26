@@ -6,7 +6,6 @@ namespace Tests\Utils;
 
 final readonly class Path
 {
-
     public static function rootDir(): string
     {
         return dirname(__DIR__, 3);

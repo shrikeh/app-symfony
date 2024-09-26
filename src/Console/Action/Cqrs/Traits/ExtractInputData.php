@@ -16,8 +16,8 @@ trait ExtractInputData
         OutputInterface $output,
         Map $data = new Map()
     ): Map {
-        foreach ($this->inputs() as $input) {
-            $data = $input->extract($input, $output, $data);
+        foreach ($this->inputs() as $expectedInput) {
+            $data = $expectedInput->extract($input, $output, $data);
         }
 
         return $data;

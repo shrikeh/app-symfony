@@ -738,7 +738,7 @@ var classes = [
         "totalStructuralComplexity": 32,
         "totalDataComplexity": 1,
         "totalSystemComplexity": 33,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Middleware\\CorrelatedMessage\\HandledEnvelope\\",
         "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 3,
@@ -780,7 +780,7 @@ var classes = [
             "Symfony\\Component\\Messenger\\Envelope",
             "Symfony\\Component\\Messenger\\Envelope",
             "Symfony\\Component\\Messenger\\Stamp\\HandledStamp",
-            "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope\\StampHandler",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Middleware\\CorrelatedMessage\\HandledEnvelope\\StampHandler",
             "Symfony\\Component\\Messenger\\Envelope",
             "Generator"
         ],
@@ -813,7 +813,7 @@ var classes = [
         "totalStructuralComplexity": 32,
         "totalDataComplexity": 1,
         "totalSystemComplexity": 33,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Middleware\\CorrelatedMessage\\",
         "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 4,
@@ -860,7 +860,7 @@ var classes = [
         "ccnMethodMax": 3,
         "externals": [
             "Symfony\\Component\\Messenger\\Middleware\\MiddlewareInterface",
-            "Shrikeh\\SymfonyApp\\Bus\\Middleware\\CorrelatedMessage\\HandledEnvelope",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Middleware\\CorrelatedMessage\\HandledEnvelope",
             "Psr\\Log\\LoggerInterface",
             "Symfony\\Component\\Messenger\\Envelope",
             "Symfony\\Component\\Messenger\\Envelope",
@@ -897,7 +897,7 @@ var classes = [
         "totalStructuralComplexity": 108,
         "totalDataComplexity": 1.57,
         "totalSystemComplexity": 109.57,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Middleware\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Middleware\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 5,
@@ -937,9 +937,9 @@ var classes = [
         "ccnMethodMax": 4,
         "externals": [
             "Shrikeh\\App\\Message\\Result",
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\BusMustReturnCorrelatedResult",
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\CorrelatedResultWasUncorrelated",
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\ResultCorrelationMismatch"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\BusMustReturnCorrelatedResult",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\CorrelatedResultWasUncorrelated",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\ResultCorrelationMismatch"
         ],
         "parents": [],
         "implements": [],
@@ -970,7 +970,7 @@ var classes = [
         "totalStructuralComplexity": 32,
         "totalDataComplexity": 0.4,
         "totalSystemComplexity": 32.4,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Traits\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Traits\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 4,
@@ -1002,7 +1002,7 @@ var classes = [
         "ccn": 2,
         "ccnMethodMax": 2,
         "externals": [
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\CorrelatedMessageUncorrelated"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\CorrelatedMessageUncorrelated"
         ],
         "parents": [],
         "implements": [],
@@ -1033,7 +1033,7 @@ var classes = [
         "totalStructuralComplexity": 1,
         "totalDataComplexity": 0.5,
         "totalSystemComplexity": 1.5,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Traits\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Traits\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 1,
@@ -1104,7 +1104,7 @@ var classes = [
         "totalStructuralComplexity": 32,
         "totalDataComplexity": 0.4,
         "totalSystemComplexity": 32.4,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Traits\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Traits\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 1,
@@ -1184,7 +1184,7 @@ var classes = [
         "totalStructuralComplexity": 108,
         "totalDataComplexity": 1.29,
         "totalSystemComplexity": 109.29,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 3,
@@ -1217,13 +1217,13 @@ var classes = [
         "ccnMethodMax": 1,
         "externals": [
             "InvalidArgumentException",
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException"
         ],
         "parents": [
             "InvalidArgumentException"
         ],
         "implements": [
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException"
         ],
         "lcom": 1,
         "length": 2,
@@ -1252,7 +1252,7 @@ var classes = [
         "totalStructuralComplexity": 4,
         "totalDataComplexity": 0.33,
         "totalSystemComplexity": 4.33,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\",
         "pageRank": 0.04,
         "afferentCoupling": 1,
         "efferentCoupling": 2,
@@ -1285,13 +1285,13 @@ var classes = [
         "ccnMethodMax": 1,
         "externals": [
             "RuntimeException",
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException"
         ],
         "parents": [
             "RuntimeException"
         ],
         "implements": [
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException"
         ],
         "lcom": 1,
         "length": 2,
@@ -1320,7 +1320,7 @@ var classes = [
         "totalStructuralComplexity": 4,
         "totalDataComplexity": 0.33,
         "totalSystemComplexity": 4.33,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\",
         "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 2,
@@ -1353,13 +1353,13 @@ var classes = [
         "ccnMethodMax": 1,
         "externals": [
             "RuntimeException",
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException"
         ],
         "parents": [
             "RuntimeException"
         ],
         "implements": [
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException"
         ],
         "lcom": 1,
         "length": 4,
@@ -1388,7 +1388,7 @@ var classes = [
         "totalStructuralComplexity": 16,
         "totalDataComplexity": 0.4,
         "totalSystemComplexity": 16.4,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\",
         "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 2,
@@ -1421,14 +1421,14 @@ var classes = [
         "ccnMethodMax": 1,
         "externals": [
             "RuntimeException",
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException",
             "Shrikeh\\App\\Message\\Result"
         ],
         "parents": [
             "RuntimeException"
         ],
         "implements": [
-            "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\DecoratorException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\DecoratorException"
         ],
         "lcom": 1,
         "length": 4,
@@ -1457,7 +1457,7 @@ var classes = [
         "totalStructuralComplexity": 4,
         "totalDataComplexity": 0.67,
         "totalSystemComplexity": 4.67,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\Exception\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\Exception\\",
         "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 3,
@@ -1537,7 +1537,7 @@ var classes = [
         "totalStructuralComplexity": 108,
         "totalDataComplexity": 1.29,
         "totalSystemComplexity": 109.29,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Decorator\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Decorator\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 3,
@@ -1570,7 +1570,7 @@ var classes = [
         "ccnMethodMax": 2,
         "externals": [
             "Shrikeh\\App\\Message",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\MessageBusReturnedNoResult"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\MessageBusReturnedNoResult"
         ],
         "parents": [],
         "implements": [],
@@ -1601,7 +1601,7 @@ var classes = [
         "totalStructuralComplexity": 0,
         "totalDataComplexity": 2,
         "totalSystemComplexity": 2,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Traits\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Traits\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 2,
@@ -1644,7 +1644,7 @@ var classes = [
             "Symfony\\Component\\Messenger\\MessageBusInterface",
             "Shrikeh\\App\\Message\\Result",
             "Shrikeh\\App\\Message\\Query",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\ErrorHandlingQuery"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\ErrorHandlingQuery"
         ],
         "parents": [],
         "implements": [
@@ -1677,7 +1677,7 @@ var classes = [
         "totalStructuralComplexity": 8,
         "totalDataComplexity": 1.33,
         "totalSystemComplexity": 9.33,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 5,
@@ -1720,7 +1720,7 @@ var classes = [
             "Symfony\\Component\\Messenger\\MessageBusInterface",
             "Shrikeh\\App\\Message\\Result",
             "Shrikeh\\App\\Message\\Command",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\ErrorHandlingCommand"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\ErrorHandlingCommand"
         ],
         "parents": [],
         "implements": [
@@ -1753,7 +1753,7 @@ var classes = [
         "totalStructuralComplexity": 8,
         "totalDataComplexity": 1.33,
         "totalSystemComplexity": 9.33,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\",
         "pageRank": 0.01,
         "afferentCoupling": 0,
         "efferentCoupling": 5,
@@ -1787,7 +1787,7 @@ var classes = [
         "externals": [
             "RuntimeException",
             "Shrikeh\\App\\Command\\CommandBus\\Exception\\CommandBusException",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\SymfonyMessageBusException",
             "Shrikeh\\App\\Message\\Command",
             "Throwable"
         ],
@@ -1796,7 +1796,7 @@ var classes = [
         ],
         "implements": [
             "Shrikeh\\App\\Command\\CommandBus\\Exception\\CommandBusException",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\SymfonyMessageBusException"
         ],
         "lcom": 1,
         "length": 5,
@@ -1825,7 +1825,7 @@ var classes = [
         "totalStructuralComplexity": 9,
         "totalDataComplexity": 0.5,
         "totalSystemComplexity": 9.5,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Exception\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\",
         "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 5,
@@ -1859,7 +1859,7 @@ var classes = [
         "externals": [
             "RuntimeException",
             "Shrikeh\\App\\Query\\QueryBus\\Exception\\QueryBusException",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\SymfonyMessageBusException",
             "Shrikeh\\App\\Message\\Query",
             "Throwable"
         ],
@@ -1868,7 +1868,7 @@ var classes = [
         ],
         "implements": [
             "Shrikeh\\App\\Query\\QueryBus\\Exception\\QueryBusException",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\SymfonyMessageBusException"
         ],
         "lcom": 1,
         "length": 5,
@@ -1897,7 +1897,7 @@ var classes = [
         "totalStructuralComplexity": 9,
         "totalDataComplexity": 0.5,
         "totalSystemComplexity": 9.5,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Exception\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\",
         "pageRank": 0.02,
         "afferentCoupling": 1,
         "efferentCoupling": 5,
@@ -1930,14 +1930,14 @@ var classes = [
         "ccnMethodMax": 1,
         "externals": [
             "RuntimeException",
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException",
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\SymfonyMessageBusException",
             "Shrikeh\\App\\Message"
         ],
         "parents": [
             "RuntimeException"
         ],
         "implements": [
-            "Shrikeh\\SymfonyApp\\Bus\\Exception\\SymfonyMessageBusException"
+            "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\SymfonyMessageBusException"
         ],
         "lcom": 1,
         "length": 5,
@@ -1966,7 +1966,7 @@ var classes = [
         "totalStructuralComplexity": 4,
         "totalDataComplexity": 0.67,
         "totalSystemComplexity": 4.67,
-        "package": "Shrikeh\\SymfonyApp\\Bus\\Exception\\",
+        "package": "Shrikeh\\SymfonyApp\\Cqrs\\Exception\\",
         "pageRank": 0.03,
         "afferentCoupling": 1,
         "efferentCoupling": 3,

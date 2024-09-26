@@ -17,14 +17,12 @@ final readonly class InputConfigurator implements Configurator
 
     public function __construct(Input ...$inputs)
     {
-        $this->inputs = new Set(...$inputs);
+        $this->inputs = new Set($inputs);
     }
 
     public function configure(ConfigurableAction $action): ConfigurableAction
     {
-        $action->setDefinition($this->addInputs($action->getDefinition()));
-
-        return $action;
+        return $action->setDefinition($this->addInputs($action->getDefinition()));
     }
 
     private function addInputs(InputDefinition $inputDefinition): InputDefinition

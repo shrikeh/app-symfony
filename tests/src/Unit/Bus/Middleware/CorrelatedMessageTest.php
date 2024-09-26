@@ -62,7 +62,7 @@ final class CorrelatedMessageTest extends TestCase
         );
 
         $this->assertTrue($correlation->matches(
-            $updatedEnvelope->last(HandledStamp::class)->getResult()->correlation
+            $updatedEnvelope->last(HandledStamp::class)->getResult()->correlated()
         ));
     }
 

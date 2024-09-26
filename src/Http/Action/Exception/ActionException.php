@@ -8,5 +8,4 @@ use Shrikeh\SymfonyApp\Http\Exception\HttpException;
 
 interface ActionException extends HttpException
 {
-
 }

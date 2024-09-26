@@ -12,4 +12,6 @@ enum ExceptionMessage: string implements AppExceptionMessage
     use Message;
 
     case UNSUPPORTED_RESULT = 'Result type %s is not supported by ResultResponseFactory %s';
+
+    case UNCORRELATABLE_QUERY = 'Query %s must implement interface %s';
 }
