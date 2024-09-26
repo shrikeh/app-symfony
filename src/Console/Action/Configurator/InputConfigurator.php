@@ -15,6 +15,11 @@ final readonly class InputConfigurator implements Configurator
     /** @var Set<Input>  */
     private Set $inputs;
 
+    public static function fromServiceTagIterator(iterable $inputs): self
+    {
+        return new self(...$inputs);
+    }
+
     public function __construct(Input ...$inputs)
     {
         $this->inputs = new Set($inputs);

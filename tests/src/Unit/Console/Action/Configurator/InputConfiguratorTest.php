@@ -28,7 +28,7 @@ final class InputConfiguratorTest extends TestCase
         $input1 = $this->input();
         $input2 = $this->input();
 
-        $inputConfigurator = new InputConfigurator($input1, $input2);
+        $inputConfigurator = InputConfigurator::fromServiceTagIterator([$input1, $input2]);
 
         $inputConfigurator($configurableAction->reveal());
 
