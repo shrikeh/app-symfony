@@ -8,4 +8,5 @@
     <rule ref="Shrikeh" />
     <file>tests</file>
     <file>src</file>
+    <exclude>tests/app</exclude>
 </ruleset>
