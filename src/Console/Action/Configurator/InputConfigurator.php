@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Shrikeh\SymfonyApp\Console\Action\Configurator;
 
 use Ds\Set;
-use Shrikeh\SymfonyApp\Console\Action\ConfigurableAction;
-use Shrikeh\SymfonyApp\Console\Action\Configurator;
+use Shrikeh\ApiContext\Console\Action\ConfigurableAction;
+use Shrikeh\ApiContext\Console\Action\Configurator;
 use Shrikeh\SymfonyApp\Console\Input;
 use Symfony\Component\Console\Input\InputDefinition;
 

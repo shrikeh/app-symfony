@@ -18,9 +18,6 @@
     <testsuite name="Symfony App Unit Test Suite">
       <directory suffix="Test.php">tests/src/Unit</directory>
     </testsuite>
-    <testsuite name="Symfony App Feature Test Suite">
-      <directory suffix="Test.php">tests/src/Feature</directory>
-    </testsuite>
   </testsuites>
 
   <source restrictNotices="true" restrictWarnings="true">

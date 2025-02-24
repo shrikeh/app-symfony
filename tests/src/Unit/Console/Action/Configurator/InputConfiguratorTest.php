@@ -7,7 +7,7 @@ namespace Tests\Unit\Console\Action\Configurator;
 use Ds\Map;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Shrikeh\SymfonyApp\Console\Action\ConfigurableAction;
+use Shrikeh\ApiContext\Console\Action\ConfigurableAction;
 use Shrikeh\SymfonyApp\Console\Action\Configurator\InputConfigurator;
 use Shrikeh\SymfonyApp\Console\Input;
 use Symfony\Component\Console\Input\InputDefinition;
