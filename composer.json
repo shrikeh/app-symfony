@@ -1,144 +1,101 @@
 {
-  "name": "shrikeh/app-symfony",
-  "description": "Symfony implementations of common App components",
-  "license": "MIT",
-  "type": "library",
-  "authors": [
-    {
-      "name": "Barney Hanlon",
-      "email": "barney@shrikeh.net"
-    }
-  ],
-  "require": {
-    "php": ">=8.3",
-    "php-ds/php-ds": "^1.5",
-    "psr/http-message": "^2.0",
-    "psr/log": "^3.0",
-    "shrikeh/common-app": "*",
-    "symfony/config": "^7.0",
-    "symfony/dependency-injection": "^7.0",
-    "symfony/http-kernel": "^7.0",
-    "symfony/messenger": "^7.0",
-    "symfony/uid": "^7.0"
-  },
-  "require-dev": {
-    "ext-ctype": "*",
-    "ext-iconv": "*",
-    "ext-xdebug": "*",
-    "nyholm/psr7": "^1.8",
-    "phpbench/phpbench": "^1.3",
-    "phpro/grumphp": "*",
-    "phpro/grumphp-shim": "^2.8",
-    "povils/phpmnd": "^3.5",
-    "shrikeh/php-coding-bible": ">=0.2.0",
-    "shrikeh/symfony-app-helloworld": "@dev",
-    "shrikeh/teapot": "^1.0",
-    "shrikeh/testing-metapackage": ">=0.3",
-    "symfony/dotenv": "~7.1.0",
-    "symfony/flex": "^2",
-    "symfony/framework-bundle": "~7.1.0",
-    "symfony/http-foundation": "^7.1",
-    "symfony/property-access": "^7.1",
-    "symfony/psr-http-message-bridge": "^7.1",
-    "symfony/runtime": "~7.1.0",
-    "symfony/yaml": "~7.1.0"
-  },
-  "archive": {
-    "exclude": [
-      "*",
-      "!/src",
-      "!/config"
-    ]
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/shrikeh/common-app"
+    "name": "shrikeh/app-symfony",
+    "description": "Symfony implementations of common App components",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barney Hanlon",
+            "email": "barney@shrikeh.net"
+        }
+    ],
+    "require": {
+        "php": ">=8.3",
+        "psr/log": "*",
+        "symfony/messenger": "^7.0",
+        "symfony/http-kernel": "^7.0",
+        "shrikeh/common-app": ">=0.1",
+        "symfony/dependency-injection": "^7.0",
+        "symfony/config": "^7.0",
+        "symfony/uid": "^7.0",
+        "nyholm/psr7": "^1.8",
+        "php-ds/php-ds": "^1.5"
     },
+    "require-dev": {
+      "ext-xdebug": "*",
+      "shrikeh/php-coding-bible": ">=0.2.0",
+      "shrikeh/testing-metapackage": ">=0.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shrikeh\\SymfonyApp\\": "src"
+        }
+    },
+    "repositories": [
     {
-      "type": "vcs",
-      "url": "https://github.com/shrikeh/symfony-app-helloworld"
+        "type": "vcs",
+        "url": "https://github.com/shrikeh/common-app"
     }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Shrikeh\\SymfonyApp\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "App\\": "tests/app/src",
-      "Tests\\": "tests/src"
-    }
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true,
-      "ergebnis/composer-normalize": true,
-      "infection/extension-installer": true,
-      "phpro/grumphp-shim": true,
-      "phpstan/extension-installer": true,
-      "symfony/flex": true,
-      "symfony/runtime": true
-    }
-  },
-  "extra": {
-    "composer-normalize": {
-      "indent-size": 2,
-      "indent-style": "space"
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
+            "phpstan/extension-installer": true
+        }
     },
-    "bin-dir": "tests/app/bin",
-    "config-dir": "tests/app/config",
-    "public-dir": "tests/app/public",
-    "src-dir": "tests/app",
-    "var-dir": "build/var"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "@install-codestandards"
-    ],
-    "auto-scripts": {
-      "cache:clear": "symfony-cmd",
-      "assets:install %PUBLIC_DIR%": "symfony-cmd"
+    "extra": {
+        "composer-normalize": {
+            "indent-size": 2,
+            "indent-style": "space"
+        }
     },
-    "behat": "vendor/bin/behat --format progress --format pretty",
-    "bench": "@php -d 'xdebug.mode=off' ./vendor/bin/phpbench",
-    "craft": [
-      "@test",
-      "@quality"
-    ],
-    "fix": [
-      "@phpcbf",
-      "@psalm:fix",
-      "@composer normalize"
-    ],
-    "infection": "@php vendor/bin/infection --show-mutations --threads=8  --min-covered-msi=${MIN_COVERED_MSI:-100} --min-msi=${MIN_MSI:-100}",
-    "install-codestandards": [
-      "PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
-    ],
-    "metrics": [
-      "@phpunit:all",
-      "@phpmetrics"
-    ],
-    "phpcbf": "vendor/bin/phpcbf",
-    "phpcs": "vendor/bin/phpcs",
-    "phpmd": "vendor/bin/phpmd ./src text ./phpmd.xml.dist",
-    "phpmetrics": "@php -d 'error_reporting=E_ALL ^ E_DEPRECATED' vendor/bin/phpmetrics --config=phpmetrics.yml",
-    "phpstan": "vendor/bin/phpstan analyse -v -c phpstan.neon.dist",
-    "phpunit": [
-      "@phpunit:all",
-      "@infection"
-    ],
-    "phpunit:all": "@php -d 'xdebug.coverage=1' -d 'xdebug.mode=coverage' vendor/bin/phpunit --path-coverage --log-junit ${COVERAGE_DIR:-build/logs}/junit.xml --coverage-text  --coverage-html ${DOCS_DIR:-docs}/coverage  --coverage-cobertura ${COVERAGE_DIR:-build/coverage}/cobertura.xml --coverage-clover ${COVERAGE_DIR:-build/coverage}/clover.xml",
-    "psalm": "vendor/bin/psalm",
-    "psalm:fix": "vendor/bin/psalm --alter --issues=all --dry-run",
-    "quality": [
-      "@phpcs",
-      "@phpstan",
-      "@psalm"
-    ],
-    "test": [
-      "@phpunit"
-    ]
-  }
+    "scripts": {
+        "post-install-cmd": [
+            "@install-codestandards"
+        ],
+        "behat": "vendor/bin/behat --format progress --format pretty",
+        "craft": [
+            "@test",
+            "@quality"
+        ],
+        "fix": [
+            "@phpcbf",
+            "@psalm:fix",
+            "@composer normalize"
+        ],
+        "infection": "php vendor/bin/infection --show-mutations --threads=8  --min-covered-msi=${MIN_COVERED_MSI:-100} --min-msi=${MIN_MSI:-100}",
+        "install-codestandards": [
+            "PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+        ],
+        "metrics": [
+            "@phpunit:all",
+            "@phpmetrics"
+        ],
+        "phpcbf": "vendor/bin/phpcbf",
+        "phpcs": "vendor/bin/phpcs",
+        "phpmd": "vendor/bin/phpmd ./src text ./phpmd.xml.dist",
+        "phpmetrics": "php -d 'error_reporting=E_ALL ^ E_DEPRECATED' vendor/bin/phpmetrics --config=phpmetrics.yml",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon.dist",
+        "phpunit": [
+            "@phpunit:all",
+            "@infection"
+        ],
+        "phpunit:all": "php -d 'xdebug.coverage=1' -d 'xdebug.mode=coverage' vendor/bin/phpunit --path-coverage --log-junit ${COVERAGE_DIR:-build/logs}/junit.xml --coverage-text  --coverage-html ${DOCS_DIR:-docs}/coverage  --coverage-cobertura ${COVERAGE_DIR:-build/coverage}/cobertura.xml --coverage-clover ${COVERAGE_DIR:-build/coverage}/clover.xml",
+        "psalm": "vendor/bin/psalm",
+        "psalm:fix": "vendor/bin/psalm --alter --issues=all --dry-run",
+        "quality": [
+            "@phpcs",
+            "@phpstan",
+            "@psalm"
+        ],
+        "test": [
+            "@phpunit"
+        ],
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
+    }
 }

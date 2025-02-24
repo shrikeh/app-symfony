@@ -15,7 +15,6 @@ final readonly class CorrelationUlid implements CorrelationId
 {
     use BinaryUlid;
     use Rfc4122Uid;
-
     public static function init(DateTimeInterface $dateTime = new DateTimeImmutable()): self
     {
         return self::fromString(Ulid::generate($dateTime));
@@ -28,6 +27,7 @@ final readonly class CorrelationUlid implements CorrelationId
 
     private function __construct(public Ulid $uid)
     {
+
     }
 
     public function getDateTime(): DateTimeImmutable
@@ -42,6 +42,7 @@ final readonly class CorrelationUlid implements CorrelationId
 
     public function matches(CorrelationId $correlationId): bool
     {
+        return $this->uid()->equals(Ulid::fromString($correlationId->toString()));
         return $this->toString() === $correlationId->toString();
     }
 }
